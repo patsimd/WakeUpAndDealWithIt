@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         TimePicker timePicker = (TimePicker)findViewById(R.id.alarmTimeSelector);
         selectedTime = Calendar.getInstance();
-
+        selectedTime.set(Calendar.SECOND, 0);
         timePicker.setHour(selectedTime.get(Calendar.HOUR_OF_DAY));
         timePicker.setMinute(selectedTime.get(Calendar.MINUTE));
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                 selectedTime.set(Calendar.MINUTE, minute);
                 selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-
+                selectedTime.set(Calendar.SECOND, 0);
                 alarmStatusTextView.setText("time: " +selectedTime.get(Calendar.HOUR_OF_DAY)+ ":" + selectedTime.get(Calendar.MINUTE));
             }
         });
