@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-public class ShakingGame extends Activity implements SensorEventListener{
+public class ShakingGame extends Game implements SensorEventListener{
 
     private Sensor mySensor;
     private SensorManager SM;
@@ -28,8 +28,9 @@ public class ShakingGame extends Activity implements SensorEventListener{
 
     private TextView yText;
     private static float growthMult = 20;
-
     private static float depletePerSec = 200;
+
+    private static int fillLimit = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstaceState) {
@@ -46,7 +47,7 @@ public class ShakingGame extends Activity implements SensorEventListener{
         lastTime = Calendar.getInstance();
 
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
-        progressBar.setMax(1000);
+        progressBar.setMax(fillLimit);
         progressBar.setProgress(fillBar = 0);
         lastAcceleration = 0;
       //  xText = (TextView)findViewById(R.id.xText);
@@ -82,6 +83,9 @@ public class ShakingGame extends Activity implements SensorEventListener{
         lastTime = currentTime;
         lastAcceleration = currentAcceleration;
 
+        if(fillBar > fillLimit)
+            gameCompleted();
+
         // xText.setText("x: " + sensorEvent.values[0]);
         // yText.setText("y: " + sensorEvent.values[1]);
         // zText.setText("z: " + sensorEvent.values[2]);
@@ -91,4 +95,6 @@ public class ShakingGame extends Activity implements SensorEventListener{
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+
 }
