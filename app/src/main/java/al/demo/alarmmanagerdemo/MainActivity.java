@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
                 selectedTime.set(Calendar.MINUTE, minute);
                 selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-
+                selectedTime.set(Calendar.SECOND, 0);
                 alarmStatusTextView.setText("time: " +selectedTime.get(Calendar.HOUR_OF_DAY)+ ":" + selectedTime.get(Calendar.MINUTE));
             }
         });
