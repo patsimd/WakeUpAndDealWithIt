@@ -24,12 +24,4 @@
         android:progress="33"
         android:progressDrawable="@drawable/vertical_progress_bar" />
 
-    <TextView
-        android:id="@+id/value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="25sp" />
-
 </LinearLayout>

@@ -29,7 +29,7 @@ public class ShakingGame extends Activity implements SensorEventListener{
     private TextView yText;
     private static float growthMult = 20;
 
-    private static float depletePerSec = 250;
+    private static float depletePerSec = 200;
 
     @Override
     protected void onCreate(Bundle savedInstaceState) {
@@ -50,7 +50,7 @@ public class ShakingGame extends Activity implements SensorEventListener{
         progressBar.setProgress(fillBar = 0);
         lastAcceleration = 0;
       //  xText = (TextView)findViewById(R.id.xText);
-        yText = (TextView)findViewById(R.id.value);
+       // yText = (TextView)findViewById(R.id.value);
         //zText = (TextView)findViewById(R.id.zText);
     }
 
@@ -77,7 +77,7 @@ public class ShakingGame extends Activity implements SensorEventListener{
         fillBar += (deltaAcc * growthMult - depletePerSec) * (timeLapse/1000);
 
         progressBar.setProgress(fillBar);
-        yText.setText("dY: " + deltaAcc);
+      //  yText.setText("dY: " + deltaAcc);
 
         lastTime = currentTime;
         lastAcceleration = currentAcceleration;
