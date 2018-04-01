@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="al.demo.alarmmanagerdemo.ShakingGame"
+            android:label="@string/app_name" />
 
         <receiver android:name=".PowerConnectedBroadcastReceiver" >
             <intent-filter>
