@@ -34,11 +34,11 @@ public class NotificationPublisher extends BroadcastReceiver {
         switch (randomActivity){
             case 0: contentIntent = new Intent(context, ShakingGame.class);
                 break;
-            case 1: contentIntent = new Intent(context, ShakingGame.class);
+            case 1: contentIntent = new Intent(context, MathExercice.class);
                 break;
-            case 2: contentIntent = new Intent(context, ShakingGame.class);
+            case 2: contentIntent = new Intent(context, SentenceExercice.class);
                 break;
-            default: contentIntent = new Intent(context, ShakingGame.class);
+            default: contentIntent = new Intent(context, MainActivity.class);
                 break;
         }
 
