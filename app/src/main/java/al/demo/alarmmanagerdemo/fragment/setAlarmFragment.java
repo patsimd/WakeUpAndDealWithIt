@@ -34,6 +34,7 @@ public class setAlarmFragment extends Fragment{
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle bundle){
         View v = inflater.inflate(R.layout.set_alarm,vg,false);
@@ -55,7 +56,7 @@ public class setAlarmFragment extends Fragment{
 
                 Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
                 if(alarmNameTextView.getText().toString().isEmpty())
-                    notificationIntent.putExtra("AlarmName","Alarme!");
+                    notificationIntent.putExtra("AlarmName","Alarm!");
                 else
                     notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
