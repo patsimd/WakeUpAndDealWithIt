@@ -26,13 +26,15 @@ public class AlarmPlayer extends Service {
         /*mediaPlayer = MediaPlayer.create(this, R.raw.beepbeep);
         mediaPlayer.start();*/
 
-        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        /*Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (sound == null) {
             sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             if (sound == null) {
                 sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
             }
-        }
+        }*/
+
+        Uri sound = Uri.parse(intent.getStringExtra("alarmMusic"));
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);

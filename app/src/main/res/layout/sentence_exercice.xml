@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/phraseEdit"
+        android:inputType="textCapSentences"
         android:hint="Entrer la phrase ici"/>
     <LinearLayout
         android:layout_width="match_parent"

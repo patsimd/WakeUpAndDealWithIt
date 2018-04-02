@@ -24,6 +24,7 @@ public class NotificationPublisher extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent service_intent = new Intent(context, AlarmPlayer.class);
+        service_intent.putExtra("alarmMusic",intent.getStringExtra("musicUri"));
         context.startService(service_intent);
 
 
