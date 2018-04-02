@@ -25,13 +25,12 @@ public class NotificationPublisher extends BroadcastReceiver {
         contentIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         contentIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
         Notification notification = new NotificationCompat.Builder(context)
                 .setContentIntent(PendingIntent.getActivity(context, 0, contentIntent, 0))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
-                .setContentTitle("Test title")
-                .setContentText("Test text")
+                .setContentTitle("Wake Up And Deal With It !!!")
+                .setContentText(intent.getStringExtra("AlarmName"))
                 .build();
 
         notificationManager.notify(123, notification);
