@@ -1,6 +1,7 @@
 package al.demo.alarmmanagerdemo.fragment;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -72,6 +73,8 @@ public class setAlarmFragment extends Fragment{
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
+
+
             }
         });
 
@@ -94,5 +97,7 @@ public class setAlarmFragment extends Fragment{
         });
 
     }
+
+
 
 }

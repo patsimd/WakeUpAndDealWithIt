@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+
+import al.demo.alarmmanagerdemo.MainActivity;
 
 /**
  * Created by Utilisateur on 2018-04-02.
@@ -12,6 +15,9 @@ import android.support.v4.view.ViewPager;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
+
+    protected static Fragment first;
+    protected static Fragment second;
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -20,13 +26,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         if(position == 0)
         {
-            listAlarmFragment tab1 = new listAlarmFragment();
-            return tab1;
+            if(first == null)
+                 first = new listAlarmFragment();
+          //  MainActivity.frag1 = tab1.getId();
+
+            return first;
         }
         else
         {
-            setAlarmFragment tab2 = new setAlarmFragment();
-            return tab2;
+            if(second == null)
+                second = new setAlarmFragment();
+            //MainActivity.frag2 = tab2.getId();
+            return second;
         }
     }
 
