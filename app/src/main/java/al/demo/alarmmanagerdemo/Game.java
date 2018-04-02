@@ -29,7 +29,7 @@ public class Game extends AppCompatActivity {
     {
         setContentView(R.layout.game_completed);
         stopService(new Intent(this, AlarmPlayer.class));
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonClose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 close();
