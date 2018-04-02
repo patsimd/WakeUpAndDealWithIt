@@ -26,11 +26,15 @@ public class SentenceExercice extends Game {
 
     private String randomSentence;
     private int difficulte =1;
+    private TextView txtSentence;
+    private EditText answerSentence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sentence_exercice);
+        txtSentence = (TextView)findViewById(R.id.phraseText);
+        answerSentence = (EditText)findViewById(R.id.phraseEdit);
         createActivity();
 
     }
@@ -51,12 +55,10 @@ public class SentenceExercice extends Game {
             randomSentence = sentencesHard[random];
         }
 
-        TextView txtSentence = (TextView)findViewById(R.id.phraseText);
         txtSentence.setText(randomSentence);
     }
 
     public void validate(View view){
-        EditText answerSentence = (EditText)findViewById(R.id.phraseEdit);
         String rep = answerSentence.getText().toString();
         if(rep.equals(randomSentence))
             gameCompleted();

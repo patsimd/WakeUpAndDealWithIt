@@ -17,11 +17,16 @@ public class MathExercice extends Game{
     private int maxNum;
     private int difficulte =1;
 
+    private EditText answerEquation;
+    private TextView txtEquation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.math_exercice);
+        answerEquation = (EditText)findViewById(R.id.equationEdit);
+        txtEquation = (TextView)findViewById(R.id.equationText);
         createActivity();
     }
 
@@ -64,7 +69,6 @@ public class MathExercice extends Game{
 
         }
         answer = String.valueOf(answerInt);
-        TextView txtEquation = (TextView)findViewById(R.id.equationText);
         txtEquation.setText(equation);
     }
 
@@ -88,7 +92,6 @@ public class MathExercice extends Game{
     }
 
     public void validate(View view){
-            EditText answerEquation = (EditText)findViewById(R.id.equationEdit);
             String rep = answerEquation.getText().toString();
             if(rep.equals(answer))
             {
