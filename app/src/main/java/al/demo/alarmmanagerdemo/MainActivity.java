@@ -1,79 +1,39 @@
 package al.demo.alarmmanagerdemo;
 
-import android.annotation.SuppressLint;
-//import android.icu.util.Calendar;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.TimePicker;
+import android.support.v7.widget.Toolbar;
 
-import java.util.Calendar;
+import al.demo.alarmmanagerdemo.fragment.ViewPagerAdapter;
+import al.demo.alarmmanagerdemo.view.SlidingTabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AlarmHelper alarmHelper;
 
-    private TextView alarmStatusTextView;
-    private TextView alarmNameTextView;
-    private int s_hour;
-    private int s_minute;
-    private Calendar selectedTime;// = Calendar.getInstance();
+   // = Calendar.getInstance();
 
+    Toolbar toolbar;
+    ViewPager pager;
+    ViewPagerAdapter adapter;
+    SlidingTabLayout tabs;
+    CharSequence Titles[]={"Home","Events"};
+    int Numboftabs =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
-        alarmHelper = new AlarmHelper(this);
+        pager = (ViewPager) findViewById(R.id.pager);
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager());
 
-        alarmStatusTextView = (TextView) findViewById(R.id.status_text_view);
-        alarmNameTextView = (TextView)findViewById(R.id.alarmName);
+        pager.setAdapter(adapter);
 
-
-        findViewById(R.id.schedule_notification_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
-                if(alarmNameTextView.getText().toString().isEmpty())
-                    notificationIntent.putExtra("AlarmName","Alarme!");
-                else
-                    notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                //selectedTime = Calendar.getInstance();
-                //selectedTime.add(Calendar.MINUTE, 1);
-
-
-                //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
-                alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 10, pendingIntent);
-
-                long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-                alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
-            }
-        });
-
-
-        TimePicker timePicker = (TimePicker)findViewById(R.id.alarmTimeSelector);
-        selectedTime = Calendar.getInstance();
-        selectedTime.set(Calendar.SECOND, 0);
-
-        timePicker.setHour(selectedTime.get(Calendar.HOUR_OF_DAY));
-        timePicker.setMinute(selectedTime.get(Calendar.MINUTE));
-
-        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-
-                selectedTime.set(Calendar.MINUTE, minute);
-                selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                selectedTime.set(Calendar.SECOND, 0);
-                alarmStatusTextView.setText("time: " +selectedTime.get(Calendar.HOUR_OF_DAY)+ ":" + selectedTime.get(Calendar.MINUTE));
-            }
-        });
+        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setViewPager(pager);
     }
 
 
