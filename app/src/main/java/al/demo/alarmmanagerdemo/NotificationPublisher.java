@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class NotificationPublisher extends BroadcastReceiver {
     private String TAG = "NotificationPublisher";
 
@@ -20,7 +23,22 @@ public class NotificationPublisher extends BroadcastReceiver {
         Intent service_intent = new Intent(context, AlarmPlayer.class);
         context.startService(service_intent);
 
-        Intent contentIntent = new Intent(context, MainActivity.class);
+
+        int randomActivity = (int)(Math.random() * 3);
+
+        Intent contentIntent;
+
+        switch (randomActivity){
+            case 0: contentIntent = new Intent(context, MainActivity.class);
+                break;
+            case 1: contentIntent = new Intent(context, MainActivity.class);
+                break;
+            case 2: contentIntent = new Intent(context, MainActivity.class);
+                break;
+            default: contentIntent = new Intent(context, MainActivity.class);
+                break;
+        }
+
         contentIntent.setAction(Intent.ACTION_MAIN);
         contentIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         contentIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -30,6 +48,7 @@ public class NotificationPublisher extends BroadcastReceiver {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
                 .setContentTitle(intent.getStringExtra("AlarmName"))
+                .setContentText(String.valueOf(randomActivity))
                 .build();
 
         notificationManager.notify(123, notification);
