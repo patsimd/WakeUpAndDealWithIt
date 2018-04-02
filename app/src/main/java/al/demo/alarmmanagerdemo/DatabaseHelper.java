@@ -24,10 +24,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table alarm(id integer primary key,name string no null, date integer not null,game integer not null, difficulty string not null)");
     }
 
-    public void addAlarm(int id,String name, long millis,int game, String difficulty){
+    public long addAlarm(String name, long millis,int game, String difficulty){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("id",id);
         int sec = (int)(millis / 1000);
         values.put("name",name);
         values.put("date",sec);
@@ -36,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long newRowId = db.insert("alarm",null,values);
         if(newRowId == -1)
             Log.i("ALARM","Erreur lors de l'insertion de l'alarme");
-
+        return newRowId;
     }
     public Cursor getAlarm(){
         SQLiteDatabase db = this.getReadableDatabase();

@@ -59,14 +59,15 @@ public class setAlarmFragment extends Fragment{
                     notificationIntent.putExtra("AlarmName","Alarm!");
                 else
                     notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),Calendar.getInstance().getTimeInMillis() + 10,1,"easy");
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);
 
 
                 //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
                 alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 10, pendingIntent);
-                MainActivity.dbHelper.addAlarm(1,alarmNameTextView.getText().toString(),Calendar.getInstance().getTimeInMillis() + 10,1,"easy");
+
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
             }
