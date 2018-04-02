@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);
-                alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
+
+
+                //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
+                alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 10, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
