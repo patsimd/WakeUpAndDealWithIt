@@ -16,13 +16,6 @@ import android.util.Log;
 import android.app.Service;
 import android.view.View;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.content.ServiceConnection;
-import android.content.ComponentName;
-
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Game extends AppCompatActivity {
     private Context context;
