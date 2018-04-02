@@ -29,74 +29,72 @@ import al.demo.alarmmanagerdemo.R;
 
 public class listAlarmFragment extends Fragment{
 
-    public View view = null;
+
+    LinearLayout baseList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle bundle){
         View v = inflater.inflate(R.layout.list_alarm,vg,false);
         final Cursor c = MainActivity.dbHelper.getAlarm();
-
-
-
-
-        view = v;
+        baseList = (LinearLayout) v.findViewById(R.id.baseList);
+        
         showAlarm(c);
         return v;
     }
 
-    public void showAlarm(Cursor c){
-   // if(view != null) {
-        LinearLayout baseList = (LinearLayout) view.findViewById(R.id.baseList);
-        baseList.removeAllViews();
-        while(c.moveToNext()){
-            Log.i("ReadAlarm",String.valueOf(c.getInt(0)));
-            LinearLayout newLayout = new LinearLayout(getContext());
-            newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
-            newLayout.setOrientation(LinearLayout.HORIZONTAL);
+    public void showAlarm(Cursor c) {
+        if (baseList != null) {
 
-            ImageView iv = new ImageView(getContext());
-            iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,2.0f));
-            iv.setImageResource(R.mipmap.ic_launcher);
-            newLayout.addView(iv);
+            baseList.removeAllViews();
+            while (c.moveToNext()) {
+                Log.i("ReadAlarm", String.valueOf(c.getInt(0)));
+                LinearLayout newLayout = new LinearLayout(getContext());
+                newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                newLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-            CheckBox chk = new CheckBox(getContext());
-            chk.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,1.0f));
-            newLayout.addView(chk);
+                ImageView iv = new ImageView(getContext());
+                iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
+                iv.setImageResource(R.mipmap.ic_launcher);
+                newLayout.addView(iv);
+
+                CheckBox chk = new CheckBox(getContext());
+                chk.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+                newLayout.addView(chk);
 
 
-            TextView tv = new TextView(getContext());
-            tv.setText(c.getString(1));
-            tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,2.0f));
-            tv.setTextColor(Color.BLACK);
-            tv.setTextSize(18);
-            newLayout.addView(tv);
+                TextView tv = new TextView(getContext());
+                tv.setText(c.getString(1));
+                tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
+                tv.setTextColor(Color.BLACK);
+                tv.setTextSize(18);
+                newLayout.addView(tv);
 
-            TextView tv2 = new TextView(getContext());
-            tv2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,2.0f));
-            tv2.setText(String.valueOf(c.getInt(2)) + ":" + String.valueOf(c.getInt(3)));
-            tv2.setTextColor(Color.BLACK);
-            tv2.setTextSize(18);
-            newLayout.addView(tv2);
+                TextView tv2 = new TextView(getContext());
+                tv2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
+                tv2.setText(String.valueOf(c.getInt(2)) + ":" + String.valueOf(c.getInt(3)));
+                tv2.setTextColor(Color.BLACK);
+                tv2.setTextSize(18);
+                newLayout.addView(tv2);
 
-            Button b = new Button(getContext());
-            b.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,0.1f));
-            b.setText("Delete");
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                Button b = new Button(getContext());
+                b.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.1f));
+                b.setText("Delete");
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    AlarmHelper alarmHelper = new AlarmHelper(getContext());
-                    alarmHelper.unschedulePendingIntent((int)v.getTag());
-                    MainActivity.dbHelper.deleteArlarm((int)v.getTag());
-                    showAlarm(MainActivity.dbHelper.getAlarm());
-                }
-            });
-            b.setTag(c.getInt(0));
-            newLayout.addView(b);
-            baseList.addView(newLayout);
+                        AlarmHelper alarmHelper = new AlarmHelper(getContext());
+                        alarmHelper.unschedulePendingIntent((int) v.getTag());
+                        MainActivity.dbHelper.deleteArlarm((int) v.getTag());
+                        showAlarm(MainActivity.dbHelper.getAlarm());
+                    }
+                });
+                b.setTag(c.getInt(0));
+                newLayout.addView(b);
+                baseList.addView(newLayout);
+
+            }
 
         }
-
     }
-
 
 }
