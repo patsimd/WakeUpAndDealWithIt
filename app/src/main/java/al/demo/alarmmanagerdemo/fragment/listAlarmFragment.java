@@ -36,7 +36,7 @@ public class listAlarmFragment extends Fragment{
         View v = inflater.inflate(R.layout.list_alarm,vg,false);
         final Cursor c = MainActivity.dbHelper.getAlarm();
         baseList = (LinearLayout) v.findViewById(R.id.baseList);
-        
+
         showAlarm(c);
         return v;
     }
