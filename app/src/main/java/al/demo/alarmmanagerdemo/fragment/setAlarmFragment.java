@@ -67,7 +67,9 @@ public class setAlarmFragment extends Fragment{
                     notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
                 notificationIntent.putExtra("musicUri",alarmMusic.toString());
 
-                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),Calendar.getInstance().getTimeInMillis() + 10,1,"easy");
+                //long temp = Calendar.getInstance().getTimeInMillis() + 10;
+
+                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),Calendar.getInstance().getTime().getHours(),Calendar.getInstance().getTime().getMinutes() + 1,1,"easy",true);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);

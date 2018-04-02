@@ -6,24 +6,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Exercice de mathématiques" />
+        android:textSize="25sp"
+        android:text="Exercice de mathématiques"
+        android:textStyle="bold"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Instructions :"/>
+        android:text="Instructions :"
+        android:textSize="20sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vous devez résoudre l'équation ci-dessous et entrer le bon résultat afin d'arrêter l'alarme."/>
+        android:text="Vous devez résoudre l'équation ci-dessous et entrer le bon résultat afin d'arrêter l'alarme."
+        android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voici l'équation :"/>
+        android:text="Voici l'équation :"
+        android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/equationText"
-        android:text=" "/>
+        android:text=" "
+        android:textSize="25sp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +47,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fuck my life"/>
+            android:text="Nouvelle équation"
+            android:onClick="another"/>
     </LinearLayout>
 </LinearLayout>

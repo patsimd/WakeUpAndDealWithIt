@@ -15,23 +15,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Context context;
     public DatabaseHelper(Context context){
-        super(context,"ALARM",null,2);
+        super(context,"ALARM",null,3);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("create table alarm(id integer primary key,name string no null, date integer not null,game integer not null, difficulty string not null)");
+        db.execSQL("create table alarm(id integer primary key,name string not null, hour integer not null,minutes integer not null,game integer not null, difficulty string not null, repeat int not null)");
     }
 
-    public long addAlarm(String name, long millis,int game, String difficulty){
+    public long addAlarm(String name, int hour,int minutes,int game, String difficulty,boolean repeat){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        int sec = (int)(millis / 1000);
         values.put("name",name);
-        values.put("date",sec);
+        values.put("hour",hour);
+        values.put("minutes",minutes);
         values.put("game",game);
         values.put("difficulty",difficulty);
+        if(repeat)
+        {
+            values.put("repeat",1);
+        }else
+            values.put("repeat",2);
         long newRowId = db.insert("alarm",null,values);
         if(newRowId == -1)
             Log.i("ALARM","Erreur lors de l'insertion de l'alarme");

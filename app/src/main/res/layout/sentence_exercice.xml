@@ -6,24 +6,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Exercice d'écriture" />
+        android:text="Exercice d'écriture"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Instructions :"/>
+        android:text="Instructions :"
+        android:textSize="20sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vous devez réécrire la phrase ci-dessous sans faute afin d'arrêter votre alarme."/>
+        android:text="Vous devez réécrire la phrase ci-dessous sans faute afin d'arrêter votre alarme."
+        android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voici la phrase :"/>
+        android:text="Voici la phrase :"
+        android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/phraseText"
-        android:text=" "/>
+        android:text=" "
+        android:textSize="22sp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +46,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fuck my life"/>
+            android:text="Nouvelle phrase"
+            android:onClick="another"/>
     </LinearLayout>
 
 </LinearLayout>
