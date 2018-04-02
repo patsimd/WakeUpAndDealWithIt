@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
                 if(alarmNameTextView.getText().toString().isEmpty())
-                    notificationIntent.putExtra("AlarmName","Alarme!");
+                    notificationIntent.putExtra("AlarmName","Alarm!");
                 else
                     notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
