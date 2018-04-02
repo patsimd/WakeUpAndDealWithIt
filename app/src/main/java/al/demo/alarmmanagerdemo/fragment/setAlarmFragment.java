@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import al.demo.alarmmanagerdemo.AlarmHelper;
+import al.demo.alarmmanagerdemo.DatabaseHelper;
 import al.demo.alarmmanagerdemo.MainActivity;
 import al.demo.alarmmanagerdemo.R;
 
@@ -34,7 +35,6 @@ public class setAlarmFragment extends Fragment{
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle bundle){
         View v = inflater.inflate(R.layout.set_alarm,vg,false);
@@ -66,7 +66,7 @@ public class setAlarmFragment extends Fragment{
 
                 //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
                 alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 10, pendingIntent);
-
+                MainActivity.dbHelper.addAlarm(1,alarmNameTextView.getText().toString(),Calendar.getInstance().getTimeInMillis() + 10,1,"easy");
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
             }
