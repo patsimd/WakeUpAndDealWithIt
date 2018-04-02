@@ -54,4 +54,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
+    public void deleteArlarm(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM alarm WHERE id =" + String.valueOf(id));
+
+    }
 }

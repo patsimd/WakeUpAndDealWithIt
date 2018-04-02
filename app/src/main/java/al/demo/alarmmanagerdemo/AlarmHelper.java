@@ -13,25 +13,24 @@ import java.util.Calendar;
 public class AlarmHelper {
 
     private static final String TAG = "MainActivity";
-    public static final int REQUEST_CODE = 1234;
 
     private Context context;
-    private AlarmManager alarmManager;
+    public static AlarmManager alarmManager;
 
     public AlarmHelper(Context context) {
         this.context = context;
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
 
-    public void schedulePendingIntent() {
+    public void schedulePendingIntent(int code) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.SECOND,20);
 
-        schedulePendingIntent(calendar.getTimeInMillis(), getPendingIntent());
+        schedulePendingIntent(calendar.getTimeInMillis(), getPendingIntent(code));
     }
 
-    public void unschedulePendingIntent() {
-        PendingIntent pendingIntent = getPendingIntent();
+    public void unschedulePendingIntent(int code) {
+        PendingIntent pendingIntent = getPendingIntent(code);
         pendingIntent.cancel();
         alarmManager.cancel(pendingIntent);
     }
@@ -52,14 +51,14 @@ public class AlarmHelper {
         }
     }
 
-    public boolean isAlarmScheduled() {
+    public boolean isAlarmScheduled(int code) {
         Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
-        return PendingIntent.getBroadcast(context, REQUEST_CODE, notificationIntent, PendingIntent.FLAG_NO_CREATE) != null;
+        return PendingIntent.getBroadcast(context, code, notificationIntent, PendingIntent.FLAG_NO_CREATE) != null;
     }
 
-    private PendingIntent getPendingIntent() {
+    private PendingIntent getPendingIntent(int code) {
         Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
-        return PendingIntent.getBroadcast(context, REQUEST_CODE, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, code, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
 }

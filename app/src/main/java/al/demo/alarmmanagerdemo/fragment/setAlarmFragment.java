@@ -33,7 +33,7 @@ public class setAlarmFragment extends Fragment{
 
 
 
-    private AlarmHelper alarmHelper;
+    private static AlarmHelper alarmHelper;
 
     private TextView alarmStatusTextView;
     private TextView alarmNameTextView;
@@ -77,7 +77,7 @@ public class setAlarmFragment extends Fragment{
 
 
                 //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
-                alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 10, pendingIntent);
+                alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
