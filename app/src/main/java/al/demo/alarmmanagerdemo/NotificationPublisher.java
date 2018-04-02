@@ -29,7 +29,8 @@ public class NotificationPublisher extends BroadcastReceiver {
                 .setContentIntent(PendingIntent.getActivity(context, 0, contentIntent, 0))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
-                .setContentTitle(intent.getStringExtra("AlarmName"))
+                .setContentTitle("Wake Up And Deal With It !!!")
+                .setContentText(intent.getStringExtra("AlarmName"))
                 .build();
 
         notificationManager.notify(123, notification);
