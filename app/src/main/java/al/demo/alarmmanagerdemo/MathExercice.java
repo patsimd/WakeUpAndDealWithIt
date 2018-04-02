@@ -26,6 +26,8 @@ public class MathExercice extends Game{
     }
 
     private void createActivity(){
+        equation = "";
+        answerInt =0;
         int randomNumber;
         if(difficulte == 1){
             minEqu = 3;
