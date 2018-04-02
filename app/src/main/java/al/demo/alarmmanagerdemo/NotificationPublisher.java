@@ -19,7 +19,6 @@ public class NotificationPublisher extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive");
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
         Intent service_intent = new Intent(context, AlarmPlayer.class);
         context.startService(service_intent);
 
@@ -29,13 +28,13 @@ public class NotificationPublisher extends BroadcastReceiver {
         Intent contentIntent;
 
         switch (randomActivity){
-            case 0: contentIntent = new Intent(context, MainActivity.class);
+            case 0: contentIntent = new Intent(context, ShakingGame.class);
                 break;
-            case 1: contentIntent = new Intent(context, MainActivity.class);
+            case 1: contentIntent = new Intent(context, ShakingGame.class);
                 break;
-            case 2: contentIntent = new Intent(context, MainActivity.class);
+            case 2: contentIntent = new Intent(context, ShakingGame.class);
                 break;
-            default: contentIntent = new Intent(context, MainActivity.class);
+            default: contentIntent = new Intent(context, ShakingGame.class);
                 break;
         }
 
