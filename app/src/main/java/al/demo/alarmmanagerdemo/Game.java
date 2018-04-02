@@ -42,4 +42,13 @@ public class Game extends AppCompatActivity {
     {
         this.finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        stopService(new Intent(this, AlarmPlayer.class));
+    }
+
+
 }
