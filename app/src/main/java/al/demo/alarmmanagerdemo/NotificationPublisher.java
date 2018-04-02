@@ -48,7 +48,6 @@ public class NotificationPublisher extends BroadcastReceiver {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
                 .setContentTitle(intent.getStringExtra("AlarmName"))
-                .setContentText(String.valueOf(randomActivity))
                 .build();
 
         notificationManager.notify(123, notification);
