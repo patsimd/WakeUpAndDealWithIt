@@ -1,5 +1,6 @@
 package al.demo.alarmmanagerdemo;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,6 +13,8 @@ import android.util.Log;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static android.content.Context.ALARM_SERVICE;
+
 public class NotificationPublisher extends BroadcastReceiver {
     private String TAG = "NotificationPublisher";
 
@@ -20,6 +23,7 @@ public class NotificationPublisher extends BroadcastReceiver {
         Log.d(TAG, "onReceive");
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent service_intent = new Intent(context, AlarmPlayer.class);
+        service_intent.putExtra("alarmMusic",intent.getStringExtra("musicUri"));
         context.startService(service_intent);
 
 
