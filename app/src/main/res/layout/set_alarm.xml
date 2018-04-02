@@ -49,6 +49,11 @@
         android:layout_weight="1"
         tools:text="stats" />
 
+    <Button
+        android:id="@+id/ButtonChooseMusic"
+        android:text="Select Alarm Sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/schedule_notification_button"
