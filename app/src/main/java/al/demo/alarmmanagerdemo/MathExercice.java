@@ -1,20 +1,29 @@
 package al.demo.alarmmanagerdemo;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import java.util.Random;
 
-/**
- * Created by MathGuilmette on 2018-04-01.
- */
 
-public class MathExercice {
+public class MathExercice extends AppCompatActivity{
     private String answer;
-    private int intAnswer;
-    private boolean isCorrect;
     private String equation = "";
     private int minEqu = 3;
     private int maxEqu = 6;
 
-    public MathExercice(){
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.math_exercice);
+        createActivity();
+    }
+
+    private void createActivity(){
 
         int randomNumber = randomizeNumber(minEqu,maxEqu);
 
@@ -23,24 +32,15 @@ public class MathExercice {
             if(i != randomNumber -1)
                 equation += " " + randomizeOperator() + " ";
         }
-        intAnswer = 0;
-        answer = String.valueOf(intAnswer);
-    }
 
-    public String getEquation(){
-        return equation;
-    }
-
-    public boolean isCorrect(String userAnswer){
-        if(answer == userAnswer)
-            return true;
-        else
-            return false;
+        answer = "0";
+        TextView txtEquation = (TextView)findViewById(R.id.equationText);
+        txtEquation.setText(equation);
     }
 
     private char randomizeOperator(){
-        int random = (int)(Math.random() * 3 + 1);
-
+        Random rand = new Random();
+        int random = rand.nextInt(3) + 1;
         switch (random){
             case 1: return '+';
             case 2: return '-';
@@ -56,4 +56,11 @@ public class MathExercice {
 
         return random;
     }
+
+    public void validate(View view){
+            EditText answerEquation = (EditText)findViewById(R.id.equationEdit);
+            String rep = answerEquation.getText().toString();
+            if(rep == answer)
+                answer ="37";
+        }
 }
