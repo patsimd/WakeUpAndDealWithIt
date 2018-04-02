@@ -13,6 +13,6 @@ public class PowerConnectedBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         AlarmHelper alarmManager = new AlarmHelper(context);
 
-        Log.d(TAG, "PendingIntent.getBroadcast(...) != null: " + alarmManager.isAlarmScheduled());
+       // Log.d(TAG, "PendingIntent.getBroadcast(...) != null: " + alarmManager.isAlarmScheduled());
     }
 }
