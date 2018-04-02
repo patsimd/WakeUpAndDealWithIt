@@ -10,7 +10,8 @@ import java.util.Random;
 
 
 public class MathExercice extends AppCompatActivity{
-    private String answer;
+    private String answer ;
+    private int answerInt = 0;
     private String equation = "";
     private int minEqu = 3;
     private int maxEqu = 6;
@@ -26,25 +27,35 @@ public class MathExercice extends AppCompatActivity{
     private void createActivity(){
 
         int randomNumber = randomizeNumber(minEqu,maxEqu);
+        char ope;
+        int num;
+        for(int i =0 ; i<randomNumber; i++) {
+            num = randomizeNumber(0,50);
+            equation += num;
 
-        for(int i =0 ; i<randomNumber; i++){
-            equation += randomizeNumber(0,10);
-            if(i != randomNumber -1)
-                equation += " " + randomizeOperator() + " ";
+            
+            if (i != randomNumber - 1){
+                ope = randomizeOperator();
+                equation += " " + ope + " ";
+                if(ope== '+')
+                    answerInt+= num;
+                else if(ope== '-')
+                    answerInt-= num;
+            }
+
         }
-
-        answer = "0";
+        answer = String.valueOf(answerInt);
         TextView txtEquation = (TextView)findViewById(R.id.equationText);
         txtEquation.setText(equation);
     }
 
     private char randomizeOperator(){
         Random rand = new Random();
-        int random = rand.nextInt(3) + 1;
+        int random = rand.nextInt(2) + 1;
         switch (random){
             case 1: return '+';
             case 2: return '-';
-            case 3: return '*';
+            //case 3: return '*';
             //case 4: return '/';
             default: return ' ';
         }
