@@ -1,5 +1,6 @@
 package al.demo.alarmmanagerdemo;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,6 +12,8 @@ import android.util.Log;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class NotificationPublisher extends BroadcastReceiver {
     private String TAG = "NotificationPublisher";
