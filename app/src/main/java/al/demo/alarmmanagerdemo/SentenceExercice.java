@@ -8,20 +8,20 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class SentenceExercice extends Game {
-    private String[] sentencesEasy = {  "Aujourd'hui sera une très belle journée.",
-                                        "Je ne suis pas fatigué ce matin.",
-                                        "Cet exercice est très agréable.",
-                                        "Cette application est la meilleure de tous les temps."};
+    private String[] sentencesEasy = {  "Je suis un cheval.",
+                                        "Je mange une pomme.",
+                                        "Une licorne orange.",
+                                        "Le soleil est beau."};
 
-    private String[] sentencesMedium = {  "Aujourd'hui sera une très belle journée.",
+    private String[] sentencesMedium = {  "Il fait très chaud et beau à l'extérieur",
                                         "Je ne suis pas fatigué ce matin.",
                                         "Cet exercice est très agréable.",
                                         "Cette application est la meilleure de tous les temps."};
 
     private String[] sentencesHard = {  "Aujourd'hui sera une très belle journée.",
-                                        "Je ne suis pas fatigué ce matin.",
-                                        "Cet exercice est très agréable.",
-                                        "Cette application est la meilleure de tous les temps."};
+                                        "Le mot 'c'est-à-dire' est difficile à écrire.",
+                                        "Les symboles '@' '/' '<' sont désagréables.",
+                                        "Anticonstitutionnellement est le mot le plus long du dictionnaire."};
 
 
     private String randomSentence;
