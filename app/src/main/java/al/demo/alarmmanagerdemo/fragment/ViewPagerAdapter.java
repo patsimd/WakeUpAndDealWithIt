@@ -34,4 +34,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 2;
     }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0: return "Alarm list";
+            case 1: return "Set Alarm";
+        }
+        return "";
+    }
+
 }

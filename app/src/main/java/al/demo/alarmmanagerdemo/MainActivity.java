@@ -31,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
         adapter =  new ViewPagerAdapter(getSupportFragmentManager());
 
         pager.setAdapter(adapter);
+
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setDistributeEvenly(true);
         tabs.setViewPager(pager);
+
 
     }
 

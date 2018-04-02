@@ -12,11 +12,27 @@
     android:orientation="vertical"
     tools:context="al.demo.alarmmanagerdemo.MainActivity">
 
-    <EditText
-        android:id="@+id/alarmName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/alarmLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@android:color/black"
+            android:text="Label :" />
+
+        <EditText
+            android:id="@+id/alarmName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </LinearLayout>
+
 
     <TimePicker
         android:id="@+id/alarmTimeSelector"
@@ -31,16 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:text="stats"
-        />
+        tools:text="stats" />
 
 
     <Button
         android:id="@+id/schedule_notification_button"
         android:text="Schedule notification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
