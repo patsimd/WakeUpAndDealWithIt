@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
@@ -41,11 +40,11 @@ public class AlarmPlayer extends Service {
         try {
             mediaPlayer.setDataSource(this, sound);
             mediaPlayer.prepare();
+            mediaPlayer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        mediaPlayer.start();
 
         return START_NOT_STICKY;
     }

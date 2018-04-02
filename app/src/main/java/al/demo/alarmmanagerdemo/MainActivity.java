@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private AlarmHelper alarmHelper;
 
     private TextView alarmStatusTextView;
+    private TextView alarmNameTextView;
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;// = Calendar.getInstance();
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         alarmHelper = new AlarmHelper(this);
 
         alarmStatusTextView = (TextView) findViewById(R.id.status_text_view);
+        alarmNameTextView = (TextView)findViewById(R.id.alarmName);
 
 
         findViewById(R.id.schedule_notification_button).setOnClickListener(new View.OnClickListener() {
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent notificationIntent = new Intent("al.demo.alarmmanagerdemo.NOTIFY_ACTION");
+                if(alarmNameTextView.getText().toString().isEmpty())
+                    notificationIntent.putExtra("AlarmName","Alarme!");
+                else
+                    notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);
