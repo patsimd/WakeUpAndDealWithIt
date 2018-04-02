@@ -122,7 +122,7 @@ public class setAlarmFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if(resultCode == RESULT_OK && requestCode == 10){
-            Uri tempUri = alarmMusic = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+            Uri tempUri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
             if(tempUri != null)
                 alarmMusic = tempUri;
         }
