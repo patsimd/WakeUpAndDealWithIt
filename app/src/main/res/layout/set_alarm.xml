@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/schedule_notification_button"
-        android:text="Schedule notification"
+        android:text="Schedule Alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
