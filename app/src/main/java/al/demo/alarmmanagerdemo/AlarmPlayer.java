@@ -39,6 +39,7 @@ public class AlarmPlayer extends Service {
 
         try {
             mediaPlayer.setDataSource(this, sound);
+            mediaPlayer.setLooping(true);
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (IOException e) {
