@@ -76,8 +76,8 @@ public class setAlarmFragment extends Fragment{
                 //selectedTime.add(Calendar.MINUTE, 1);
 
 
-                //alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
-                alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
+                alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
+                //alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
                 alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
