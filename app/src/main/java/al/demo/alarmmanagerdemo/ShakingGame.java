@@ -76,7 +76,8 @@ public class ShakingGame extends Game implements SensorEventListener{
 
 
         fillBar += (deltaAcc * growthMult - depletePerSec) * (timeLapse/1000);
-
+        fillBar = Math.max(fillBar, 0);
+        
         progressBar.setProgress(fillBar);
       //  yText.setText("dY: " + deltaAcc);
 
