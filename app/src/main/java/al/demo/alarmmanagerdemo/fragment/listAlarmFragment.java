@@ -37,6 +37,10 @@ public class listAlarmFragment extends Fragment{
         final Cursor c = MainActivity.dbHelper.getAlarm();
         baseList = (LinearLayout) v.findViewById(R.id.baseList);
 
+
+
+
+
         showAlarm(c);
         return v;
     }
@@ -70,7 +74,7 @@ public class listAlarmFragment extends Fragment{
 
                 TextView tv2 = new TextView(getContext());
                 tv2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
-                tv2.setText(String.valueOf(c.getInt(2)) + ":" + String.valueOf(c.getInt(3)));
+                tv2.setText(String.format("%02d",c.getInt(2)) + ":" + String.format("%02d",c.getInt(3)));
                 tv2.setTextColor(Color.BLACK);
                 tv2.setTextSize(18);
                 newLayout.addView(tv2);

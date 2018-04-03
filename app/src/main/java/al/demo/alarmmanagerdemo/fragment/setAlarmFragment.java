@@ -70,7 +70,7 @@ public class setAlarmFragment extends Fragment{
 
                 //long temp = Calendar.getInstance().getTimeInMillis() + 10;
 
-                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),Calendar.getInstance().getTime().getHours(),Calendar.getInstance().getTime().getMinutes() + 1,1,"easy",true);
+                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),1,"easy",true);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);
