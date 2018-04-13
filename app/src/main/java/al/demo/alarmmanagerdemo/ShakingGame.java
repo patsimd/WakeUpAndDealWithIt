@@ -50,6 +50,21 @@ public class ShakingGame extends Game implements SensorEventListener{
         progressBar.setMax(fillLimit);
         progressBar.setProgress(fillBar = 0);
         lastAcceleration = 0;
+
+        if(difficulte.equals(Game.Difficulties[0])){
+            growthMult = 28;
+            depletePerSec = 150;
+
+        }
+        else if(difficulte.equals(Game.Difficulties[1])){
+            growthMult = 18;
+            depletePerSec = 200;
+
+        }
+        else if (difficulte.equals(Game.Difficulties[2])){
+            growthMult = 8;
+            depletePerSec = 250;
+        }
       //  xText = (TextView)findViewById(R.id.xText);
        // yText = (TextView)findViewById(R.id.value);
         //zText = (TextView)findViewById(R.id.zText);

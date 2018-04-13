@@ -42,6 +42,8 @@ public class NotificationPublisher extends BroadcastReceiver {
                 break;
         }
 
+        contentIntent.putExtra("Difficulty",intent.getStringExtra("difficultyString"));
+
         contentIntent.setAction(Intent.ACTION_MAIN);
         contentIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         contentIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

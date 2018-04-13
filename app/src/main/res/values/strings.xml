@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Wake Up And Deal With It</string>
+
+    <string-array name="difficulties_array">
+        <item>Easy</item>
+        <item>Normal</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

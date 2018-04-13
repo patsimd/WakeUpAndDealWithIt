@@ -25,7 +25,6 @@ public class SentenceExercice extends Game {
 
 
     private String randomSentence;
-    private int difficulte =1;
     private TextView txtSentence;
     private EditText answerSentence;
 
@@ -36,21 +35,20 @@ public class SentenceExercice extends Game {
         txtSentence = (TextView)findViewById(R.id.phraseText);
         answerSentence = (EditText)findViewById(R.id.phraseEdit);
         createActivity();
-
     }
 
     private void createActivity(){
         Random rand = new Random();
         int random;
-        if(difficulte == 1){
+        if(difficulte.equals(Game.Difficulties[0])){
             random = rand.nextInt(sentencesEasy.length);
             randomSentence = sentencesEasy[random];
         }
-        else if(difficulte == 2){
+        else if(difficulte.equals(Game.Difficulties[1])){
             random = rand.nextInt(sentencesMedium.length);
             randomSentence = sentencesMedium[random];
         }
-        else if (difficulte == 3){
+        else if (difficulte.equals(Game.Difficulties[2])){
             random = rand.nextInt(sentencesHard.length);
             randomSentence = sentencesHard[random];
         }
@@ -63,7 +61,7 @@ public class SentenceExercice extends Game {
         if(rep.equals(randomSentence))
             gameCompleted();
         else{
-
+            //TODO, Pas reussi
         }
     }
 

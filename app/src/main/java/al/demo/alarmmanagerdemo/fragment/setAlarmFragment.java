@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -37,10 +38,12 @@ public class setAlarmFragment extends Fragment{
 
     private TextView alarmStatusTextView;
     private TextView alarmNameTextView;
+    private Spinner spinnerDifficulty;
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;
     private Uri alarmMusic;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup vg, Bundle bundle){
         View v = inflater.inflate(R.layout.set_alarm,vg,false);
@@ -57,6 +60,8 @@ public class setAlarmFragment extends Fragment{
 
         alarmStatusTextView = (TextView) view.findViewById(R.id.status_text_view);
         alarmNameTextView = (TextView)view.findViewById(R.id.alarmName);
+        spinnerDifficulty = (Spinner)view.findViewById(R.id.alarmDifficultySpinner);
+
         view.findViewById(R.id.schedule_notification_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +72,11 @@ public class setAlarmFragment extends Fragment{
                 else
                     notificationIntent.putExtra("AlarmName",alarmNameTextView.getText().toString());
                 notificationIntent.putExtra("musicUri",alarmMusic.toString());
+                notificationIntent.putExtra("difficultyString", spinnerDifficulty.getSelectedItem().toString());
 
                 //long temp = Calendar.getInstance().getTimeInMillis() + 10;
 
-                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),1,"easy",true);
+                long id = MainActivity.dbHelper.addAlarm(alarmNameTextView.getText().toString(),selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),1,spinnerDifficulty.getSelectedItem().toString(),true);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 //selectedTime = Calendar.getInstance();
                 //selectedTime.add(Calendar.MINUTE, 1);

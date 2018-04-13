@@ -19,10 +19,13 @@ import android.view.View;
 
 public class Game extends AppCompatActivity {
     private Context context;
+    public static String[] Difficulties = {"Easy","Normal","Hard"};
 
+    protected String difficulte;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        difficulte = getIntent().getStringExtra("Difficulty");
     }
 
     public void gameCompleted()

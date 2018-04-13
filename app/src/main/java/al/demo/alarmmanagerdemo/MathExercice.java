@@ -15,7 +15,6 @@ public class MathExercice extends Game{
     private int minEqu;
     private int maxEqu;
     private int maxNum;
-    private int difficulte =1;
 
     private EditText answerEquation;
     private TextView txtEquation;
@@ -34,17 +33,17 @@ public class MathExercice extends Game{
         equation = "";
         answerInt =0;
         int randomNumber;
-        if(difficulte == 1){
+        if(difficulte.equals(Game.Difficulties[0])){
             minEqu = 3;
             maxEqu = 5;
             maxNum = 30;
         }
-        else if(difficulte == 2){
+        else if(difficulte.equals(Game.Difficulties[1])){
             minEqu = 4;
             maxEqu = 6;
             maxNum = 50;
         }
-        else if (difficulte == 3){
+        else if (difficulte.equals(Game.Difficulties[2])){
             minEqu = 5;
             maxEqu = 7;
             maxNum = 75;
@@ -93,12 +92,11 @@ public class MathExercice extends Game{
 
     public void validate(View view){
             String rep = answerEquation.getText().toString();
-            if(rep.equals(answer))
-            {
+            if(rep.equals(answer)) {
                 gameCompleted();
             }
             else{
-
+                //TODO, Pas reussi
             }
     }
 
