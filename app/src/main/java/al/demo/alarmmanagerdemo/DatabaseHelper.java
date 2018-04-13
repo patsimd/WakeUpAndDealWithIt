@@ -15,28 +15,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Context context;
     public DatabaseHelper(Context context){
-        super(context,"ALARM",null,3);
+        super(context,"ALARM",null,5);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("create table alarm(id integer primary key,name string not null, hour integer not null,minutes integer not null,game integer not null, difficulty string not null, repeat int not null)");
+        db.execSQL("create table alarm(id integer primary key,name string not null, hour integer not null,minutes integer not null,enabled integer not null, difficulty string not null, repeat int not null, music string not null)");
     }
 
-    public long addAlarm(String name, int hour,int minutes,int game, String difficulty,boolean repeat){
+    public long addAlarm(String name, int hour,int minutes,boolean enabled, String difficulty,boolean repeat,String musicUri){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name",name);
         values.put("hour",hour);
         values.put("minutes",minutes);
-        values.put("game",game);
+        if(enabled)
+        {
+            values.put("enabled",1);
+        }else
+            values.put("enabled",0);
         values.put("difficulty",difficulty);
         if(repeat)
         {
             values.put("repeat",1);
         }else
-            values.put("repeat",2);
+            values.put("repeat",0);
+        values.put("music", musicUri);
+
         long newRowId = db.insert("alarm",null,values);
         if(newRowId == -1)
             Log.i("ALARM","Erreur lors de l'insertion de l'alarme");
@@ -48,6 +54,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public Cursor getAlarmByID(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = db.query("alarm",null,"id = ?", args ,null,null,"id ASC");
+
+        return cursor;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("drop table if exists alarm");
@@ -59,5 +74,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM alarm WHERE id =" + String.valueOf(id));
 
+    }
+
+    public void updateAlarmEnable(int id, boolean enable){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int enabled;
+        if(enable)
+            enabled = 1;
+        else
+            enabled = 0;
+        db.execSQL("UPDATE alarm SET enabled =" + String.valueOf(enabled) + " WHERE id =" + String.valueOf(id));
     }
 }
