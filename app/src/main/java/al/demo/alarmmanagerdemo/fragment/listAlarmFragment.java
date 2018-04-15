@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,12 +60,14 @@ public class listAlarmFragment extends Fragment{
                 Log.i("ReadAlarm", String.valueOf(c.getInt(0)));
 
                 LinearLayout layoutLine1 = new LinearLayout(getContext());
-                layoutLine1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                layoutLine1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
                 layoutLine1.setOrientation(LinearLayout.HORIZONTAL);
+                layoutLine1.setGravity(Gravity.CENTER);
 
                 ImageView iv = new ImageView(getContext());
                 iv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
                 iv.setImageResource(R.mipmap.ic_launcher);
+               // iv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 layoutLine1.addView(iv);
 
                 Switch swEnable = new Switch(getContext());
@@ -134,20 +137,24 @@ public class listAlarmFragment extends Fragment{
 
                 layoutLine1.addView(swEnable);
 
+                LinearLayout layoutLine2 = new LinearLayout(getContext());
+                layoutLine2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                layoutLine2.setOrientation(LinearLayout.VERTICAL);
 
                 TextView tvLabel = new TextView(getContext());
-                tvLabel.setText(c.getString(1));
+                tvLabel.setText(c.getString(1)  + "\n" +  c.getString(5));
                 tvLabel.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
                 tvLabel.setTextColor(Color.BLACK);
                 tvLabel.setTextSize(18);
+                tvLabel.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
                 layoutLine1.addView(tvLabel);
 
-                TextView tvDifficulty = new TextView(getContext());
-                tvDifficulty.setText(c.getString(5));
-                tvDifficulty.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
-                tvDifficulty.setTextColor(Color.BLACK);
-                tvDifficulty.setTextSize(18);
-                layoutLine1.addView(tvDifficulty);
+              //  TextView tvDifficulty = new TextView(getContext());
+               // tvDifficulty.setText(c.getString(5));
+               // tvDifficulty.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
+               // tvDifficulty.setTextColor(Color.BLACK);
+                //tvDifficulty.setTextSize(18);
+              //  layoutLine1.addView(tvDifficulty);
 
                 TextView tvTime = new TextView(getContext());
                 tvTime.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
