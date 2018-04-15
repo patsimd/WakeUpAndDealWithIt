@@ -27,7 +27,7 @@ public class NotificationPublisher extends BroadcastReceiver {
         context.startService(service_intent);
 
 
-        int randomActivity = (int)(Math.random() * 3);
+        int randomActivity = (int)(Math.random() * 4);
 
         Intent contentIntent;
 
@@ -37,6 +37,8 @@ public class NotificationPublisher extends BroadcastReceiver {
             case 1: contentIntent = new Intent(context, MathExercice.class);
                 break;
             case 2: contentIntent = new Intent(context, SentenceExercice.class);
+                break;
+            case 3: contentIntent = new Intent(context, FollowPathExercice.class);
                 break;
             default: contentIntent = new Intent(context, MainActivity.class);
                 break;

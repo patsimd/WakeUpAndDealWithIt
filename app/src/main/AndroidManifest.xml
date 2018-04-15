@@ -27,7 +27,9 @@
         <activity android:name=".MathExercice"
             android:screenOrientation="portrait">
         </activity>
-
+        <activity android:name=".FollowPathExercice"
+            android:screenOrientation="portrait">
+        </activity>
 
         <receiver android:name=".PowerConnectedBroadcastReceiver" >
             <intent-filter>
