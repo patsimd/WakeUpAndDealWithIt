@@ -23,7 +23,18 @@ public class FollowPathExercice extends Game{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.followpath_normal);
+
+        switch (difficulte){
+            case "Easy":
+                setContentView(R.layout.followpath_supereasy);
+                break;
+            case "Normal":
+            setContentView(R.layout.followpath_easy);
+                break;
+            case "Hard":
+                setContentView(R.layout.followpath_normal);
+                break;
+        }
     }
 
     @Override
@@ -79,10 +90,10 @@ public class FollowPathExercice extends Game{
             followingPath = inSections ;
 
             if (followingPath == false) {
-                ((TextView) findViewById(R.id.debugText)).setText("off");
+                ((TextView) findViewById(R.id.debugText)).setText("Ok");
             }
             else
-                ((TextView)findViewById(R.id.debugText)).setText("on");
+                ((TextView)findViewById(R.id.debugText)).setText("Failed, try again");
         }
         return true;
     }
