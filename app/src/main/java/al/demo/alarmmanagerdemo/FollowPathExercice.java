@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.view.View.OnTouchListener;
 
 /**
@@ -31,6 +32,7 @@ public class FollowPathExercice extends Game{
             setContentView(R.layout.followpath_easy);
         else if (difficulte.equals(Game.Difficulties[2]))
             setContentView(R.layout.followpath_normal);
+
     }
 
     @Override

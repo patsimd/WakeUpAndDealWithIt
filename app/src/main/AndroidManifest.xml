@@ -33,6 +33,9 @@
         <activity android:name=".SequenceExercice"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".rightcolorExercice"
+            android:screenOrientation="portrait">
+        </activity>
 
 
         <receiver android:name=".PowerConnectedBroadcastReceiver" >
