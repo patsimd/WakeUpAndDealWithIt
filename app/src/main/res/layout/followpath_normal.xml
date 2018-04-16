@@ -41,13 +41,13 @@ android:layout_height="match_parent">
             android:id="@+id/section0"
             android:layout_width="50dp"
             android:layout_height="125dp"
-            android:layout_alignStart="@+id/startText"
+            android:layout_alignRight="@+id/section1"
             android:layout_alignTop="@+id/section1"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section1"
-            android:layout_width="150dp"
+            android:layout_width="164dp"
             android:layout_height="50dp"
             android:layout_alignBottom="@+id/section2"
             android:layout_alignStart="@+id/section2"
@@ -79,7 +79,7 @@ android:layout_height="match_parent">
 
         <View
             android:id="@+id/section5"
-            android:layout_width="150dp"
+            android:layout_width="164dp"
             android:layout_height="50dp"
             android:layout_alignEnd="@+id/section4"
             android:layout_alignTop="@+id/section4"
@@ -96,9 +96,10 @@ android:layout_height="match_parent">
             android:id="@+id/StartingPoint"
             android:layout_width="76dp"
             android:layout_height="76dp"
-            android:layout_alignEnd="@+id/section3"
-            android:layout_below="@+id/section2"
-            android:layout_marginTop="30dp"
+            android:layout_alignEnd="@+id/section0"
+            android:layout_below="@+id/section0"
+            android:layout_marginRight="-13dp"
+            android:layout_marginTop="-38dp"
             android:background="@drawable/circle"
             android:text="View" />
 
