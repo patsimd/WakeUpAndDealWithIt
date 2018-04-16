@@ -21,7 +21,7 @@ import android.view.View;
 
 public class Game extends AppCompatActivity {
     public static String[] Difficulties = {"Easy","Normal","Hard"};
-    public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class,SequenceExercice.class};
+    public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class,SequenceExercice.class, rightcolorExercice.class};
 
     protected String difficulte;
     private boolean intentionalDestroy = false;
