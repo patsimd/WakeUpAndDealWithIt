@@ -13,6 +13,7 @@ import java.util.Random;
 public class SequenceExercice extends Game{
     private int nbSeq;
     private String sequence = "";
+    private boolean isLast = false;
 
     private EditText answer;
     private TextView seq1;
@@ -45,6 +46,9 @@ public class SequenceExercice extends Game{
 
         for(int i =0; i < nbSeq ; i++)
         {
+            if(i == nbSeq -1)
+                isLast = true;
+
             new CountDownTimer((i+1)*1000, 1000) {
                 public void onTick(long millisUntilFinished) {
                 }
@@ -53,7 +57,6 @@ public class SequenceExercice extends Game{
                     int number = randomizeNumber();
                     ResetTextView();
                     sequence += number;
-                    answer.setText(sequence);
 
                     switch (number) {
                         case 1:
@@ -84,13 +87,14 @@ public class SequenceExercice extends Game{
 
                 public void onFinish() {
                     ResetTextView();
+                    if(isLast)
+                        answer.setEnabled(true);
+
                 }
             }.start();
 
         }
 
-        ResetTextView();
-        answer.setEnabled(true);
     }
 
     private int randomizeNumber(){
