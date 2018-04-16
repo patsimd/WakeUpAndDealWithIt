@@ -43,7 +43,7 @@ public class NotificationPublisher extends BroadcastReceiver {
 
         int randomActivity = (int)(Math.random() * Game.GamesArray.length);
 
-        Intent contentIntent = new Intent(context, FollowPathExercice.class);//Game.GamesArray[randomActivity]);
+        Intent contentIntent = new Intent(context, Game.GamesArray[randomActivity]);
 
         contentIntent.putExtra("Difficulty",intent.getStringExtra("difficultyString"));
 
