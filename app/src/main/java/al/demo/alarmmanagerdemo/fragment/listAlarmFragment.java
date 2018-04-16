@@ -91,6 +91,7 @@ public class listAlarmFragment extends Fragment{
                                     notificationIntent.putExtra("AlarmName",singleCursor.getString(1));
                                     notificationIntent.putExtra("musicUri",singleCursor.getString(7));
                                     notificationIntent.putExtra("difficultyString", singleCursor.getString(5));
+                                    notificationIntent.putExtra("alarmID",singleCursor.getInt(0));
 
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)switchView.getTag(), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 

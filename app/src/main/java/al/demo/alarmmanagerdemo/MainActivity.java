@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     CharSequence Titles[]={"Home","Events"};
     int Numboftabs =2;
     public static DatabaseHelper dbHelper;
+    static boolean active = false;
     public static int frag1;
     public static int frag2;
     @Override
@@ -63,6 +64,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        active = false;
     }
 
     public static void updateAlarmList(){
