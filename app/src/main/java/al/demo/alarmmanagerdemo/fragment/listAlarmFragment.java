@@ -138,6 +138,7 @@ public class listAlarmFragment extends Fragment{
                                     notificationIntent.putExtra("AlarmName",singleCursor.getString(1));
                                     notificationIntent.putExtra("musicUri",singleCursor.getString(7));
                                     notificationIntent.putExtra("difficultyString", singleCursor.getString(5));
+                                    notificationIntent.putExtra("alarmID",singleCursor.getInt(0));
 
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), (int)switchView.getTag(), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -145,6 +146,10 @@ public class listAlarmFragment extends Fragment{
                                     selectedTime.set(Calendar.MINUTE, singleCursor.getInt(3));
                                     selectedTime.set(Calendar.HOUR_OF_DAY, singleCursor.getInt(2));
                                     selectedTime.set(Calendar.SECOND, 0);
+                                    if (selectedTime.before(Calendar.getInstance())) {
+                                        if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
+                                            selectedTime.add(Calendar.DAY_OF_MONTH, 1);
+                                    }
                                     alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
 
                                     //TOAST

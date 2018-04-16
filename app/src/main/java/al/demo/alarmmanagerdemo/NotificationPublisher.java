@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
@@ -17,6 +18,7 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class NotificationPublisher extends BroadcastReceiver {
     private String TAG = "NotificationPublisher";
+    SQLiteDatabase db;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,6 +27,18 @@ public class NotificationPublisher extends BroadcastReceiver {
         Intent service_intent = new Intent(context, AlarmPlayer.class);
         service_intent.putExtra("alarmMusic",intent.getStringExtra("musicUri"));
         context.startService(service_intent);
+
+        int alarmID = intent.getIntExtra("alarmID",-1);
+        if(alarmID != -1){
+            if(MainActivity.active){
+                MainActivity.dbHelper.updateAlarmEnable(alarmID,false);
+                MainActivity.updateAlarmList();
+            }
+            else{
+                db = context.openOrCreateDatabase("ALARM",Context.MODE_PRIVATE, null);
+                db.execSQL("UPDATE alarm SET enabled =0 WHERE id =" + String.valueOf(alarmID));
+            }
+        }
 
 
         int randomActivity = (int)(Math.random() * 4);
