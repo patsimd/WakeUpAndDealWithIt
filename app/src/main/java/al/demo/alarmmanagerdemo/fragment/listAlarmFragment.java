@@ -60,7 +60,7 @@ public class listAlarmFragment extends Fragment{
                 Log.i("ReadAlarm", String.valueOf(c.getInt(0)));
 
                 LinearLayout layoutLine1 = new LinearLayout(getContext());
-                layoutLine1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,225));
+                layoutLine1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 layoutLine1.setOrientation(LinearLayout.HORIZONTAL);
                 layoutLine1.setGravity(Gravity.CENTER);
 
