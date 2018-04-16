@@ -106,7 +106,7 @@ public class SequenceExercice extends Game{
             gameCompleted();
         }
         else{
-            //TODO, Pas reussi
+            startNewGame();
         }
     }
 
