@@ -41,22 +41,9 @@ public class NotificationPublisher extends BroadcastReceiver {
         }
 
 
-        int randomActivity = (int)(Math.random() * 4);
+        int randomActivity = (int)(Math.random() * Game.GamesArray.length);
 
-        Intent contentIntent;
-
-        switch (randomActivity){
-            case 0: contentIntent = new Intent(context, ShakingGame.class);
-                break;
-            case 1: contentIntent = new Intent(context, MathExercice.class);
-                break;
-            case 2: contentIntent = new Intent(context, SentenceExercice.class);
-                break;
-            case 3: contentIntent = new Intent(context, FollowPathExercice.class);
-                break;
-            default: contentIntent = new Intent(context, MainActivity.class);
-                break;
-        }
+        Intent contentIntent = new Intent(context, Game.GamesArray[randomActivity]);
 
         contentIntent.putExtra("Difficulty",intent.getStringExtra("difficultyString"));
 

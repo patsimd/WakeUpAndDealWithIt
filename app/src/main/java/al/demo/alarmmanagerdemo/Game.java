@@ -21,9 +21,11 @@ import android.view.View;
 
 public class Game extends AppCompatActivity {
     public static String[] Difficulties = {"Easy","Normal","Hard"};
+    public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class};
 
     protected String difficulte;
     private boolean intentionalDestroy = false;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,28 +65,11 @@ public class Game extends AppCompatActivity {
     }
 
     private void changeGame(){
-        int randomActivity = (int)(Math.random() * 4);
+        int randomActivity = (int)(Math.random() * GamesArray.length);
 
-        Intent contentIntent;
-
-        switch (randomActivity){
-            case 0: contentIntent = new Intent(this, ShakingGame.class);
-                break;
-            case 1: contentIntent = new Intent(this, MathExercice.class);
-                break;
-            case 2: contentIntent = new Intent(this, SentenceExercice.class);
-                break;
-            case 3: contentIntent = new Intent(this, FollowPathExercice.class);
-                break;
-            default: contentIntent = new Intent(this, MainActivity.class);
-                break;
-        }
+        Intent contentIntent = new Intent(this, GamesArray[randomActivity]);
 
         contentIntent.putExtra("Difficulty",difficulte);
-
-        contentIntent.setAction(Intent.ACTION_MAIN);
-        contentIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        contentIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         startActivity(contentIntent);
 
