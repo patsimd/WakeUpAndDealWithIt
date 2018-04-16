@@ -13,7 +13,8 @@ import java.util.Random;
 public class SequenceExercice extends Game{
     private int nbSeq;
     private String sequence = "";
-    private boolean isLast = false;
+    private int nbIterate = 0;
+    int number;
 
     private EditText answer;
     private TextView seq1;
@@ -44,19 +45,18 @@ public class SequenceExercice extends Game{
             nbSeq = 8;
         }
 
-        for(int i =0; i < nbSeq ; i++)
+        for(int i =0; i < nbSeq +1; i++)
         {
-            if(i == nbSeq -1)
-                isLast = true;
-
             new CountDownTimer((i+1)*1000, 1000) {
                 public void onTick(long millisUntilFinished) {
                 }
 
                 public void onFinish() {
-                    int number = randomizeNumber();
-                    ResetTextView();
-                    sequence += number;
+                    if(number != -99){
+                        number = randomizeNumber();
+                        ResetTextView();
+                        sequence += number;
+                    }
 
                     switch (number) {
                         case 1:
@@ -75,6 +75,8 @@ public class SequenceExercice extends Game{
                             seq4.setTextSize(50);
                             seq4.setTextColor(Color.RED);
                             break;
+                        case -99:
+                            answer.setEnabled(true);
                         default:
                             break;
                     }
@@ -87,8 +89,11 @@ public class SequenceExercice extends Game{
 
                 public void onFinish() {
                     ResetTextView();
-                    if(isLast)
-                        answer.setEnabled(true);
+                    nbIterate ++;
+                    if(nbIterate == nbSeq)
+                        number = -99;
+
+
 
                 }
             }.start();
@@ -117,6 +122,7 @@ public class SequenceExercice extends Game{
     public void another(View view){
         createActivity();
         sequence = "";
+        nbIterate = 0;
     }
 
     private void ResetTextView(){
