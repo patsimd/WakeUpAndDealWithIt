@@ -40,7 +40,7 @@ public class FollowPathExercice extends Game{
         int x = Math.round(ev.getX());
         int y = Math.round(ev.getY());
 
-        RelativeLayout b = (View)findViewById(R.id.Background);
+        RelativeLayout b = (RelativeLayout)findViewById(R.id.Background);
         if(b == null)
             return true;
 

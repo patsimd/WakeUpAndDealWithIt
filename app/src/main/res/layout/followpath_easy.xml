@@ -39,7 +39,7 @@
         <TextView
             android:id="@+id/finishText"
             style="@style/WhiteText"
-            ndroid:gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/FinishingPoint"
@@ -47,7 +47,6 @@
             android:layout_marginBottom="12dp"
             android:layout_marginEnd="0dp"
             android:layout_marginTop="0dp"
-            android:gravity="center_horizontal"
             android:text="Finish" />
 
         <View
