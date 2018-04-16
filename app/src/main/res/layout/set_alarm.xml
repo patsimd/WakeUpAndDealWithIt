@@ -62,27 +62,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="20dp"
+        android:padding="0dp"
         android:timePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/ButtonChooseMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Alarm Sound" />
+
+    <Button
+        android:id="@+id/schedule_notification_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Schedule Alarm" />
 
     <TextView
         android:id="@+id/status_text_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="46dp"
         android:layout_weight="1"
         tools:text="stats" />
-
-    <Button
-        android:id="@+id/ButtonChooseMusic"
-        android:text="Select Alarm Sound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/schedule_notification_button"
-        android:text="Schedule Alarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

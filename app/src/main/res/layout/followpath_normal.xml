@@ -14,15 +14,6 @@ android:layout_height="match_parent">
 
 
         <TextView
-            android:id="@+id/debugText"
-            style="@style/WhiteText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="TextView" />
-
-        <TextView
             android:id="@+id/StartText"
             style="@style/WhiteText"
             android:layout_width="76dp"
@@ -123,6 +114,37 @@ android:layout_height="match_parent">
             android:elevation="0dp"
             android:text="View" />
 
+        <LinearLayout
+            android:id="@+id/InstructionWindow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:layout_margin="50dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:background="@color/colorPrimaryLight"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/instruction"
+                    style="@style/WhiteText"
+                    android:layout_width="wrap_content"
+                    android:lines="3"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/StartingPoint"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Touch Start and follow the path to Finish" />
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
