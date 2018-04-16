@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="25sp"
-        android:text="Exercice de mathématiques"
+        android:text="Math Exercise"
         android:textStyle="bold"/>
     <TextView
         android:layout_width="match_parent"
@@ -17,12 +17,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vous devez résoudre l'équation ci-dessous et entrer le bon résultat afin d'arrêter l'alarme."
+        android:text="You must resolve the following equation and enter the right answer to stop the alarm."
         android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voici l'équation :"
+        android:text="Your equation :"
         android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -35,19 +35,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/equationEdit"
         android:inputType="numberSigned"
-        android:hint="Entrer le résultat ici"/>
+        android:hint="Enter the result here"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Envoyer la réponse"
+            android:text="Send"
             android:onClick="validate"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nouvelle équation"
+            android:text="New"
             android:onClick="another"/>
     </LinearLayout>
 </LinearLayout>

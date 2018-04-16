@@ -30,6 +30,10 @@
         <activity android:name=".FollowPathExercice"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".SequenceExercice"
+            android:screenOrientation="portrait">
+        </activity>
+
 
         <receiver android:name=".PowerConnectedBroadcastReceiver" >
             <intent-filter>

@@ -24,17 +24,13 @@ public class FollowPathExercice extends Game{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        switch (difficulte){
-            case "Easy":
-                setContentView(R.layout.followpath_supereasy);
-                break;
-            case "Normal":
+        if(difficulte.equals(Game.Difficulties[0]))
+            setContentView(R.layout.followpath_supereasy);
+        else if(difficulte.equals(Game.Difficulties[1]))
             setContentView(R.layout.followpath_easy);
-                break;
-            case "Hard":
-                setContentView(R.layout.followpath_normal);
-                break;
-        }
+        else if (difficulte.equals(Game.Difficulties[2]))
+            setContentView(R.layout.followpath_normal);
+
     }
 
     @Override

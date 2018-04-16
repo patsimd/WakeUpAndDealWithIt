@@ -8,20 +8,20 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class SentenceExercice extends Game {
-    private String[] sentencesEasy = {  "Je suis un cheval.",
-                                        "Je mange une pomme.",
-                                        "Une licorne orange.",
-                                        "Le soleil est beau."};
+    private String[] sentencesEasy = {  "I am a horse.",
+                                        "I eat an apple.",
+                                        "An orange unicorn flies.",
+                                        "The sun is beautiful."};
 
-    private String[] sentencesMedium = {  "Il fait très chaud et beau à l'extérieur",
-                                        "Je ne suis pas fatigué ce matin.",
-                                        "Cet exercice est très agréable.",
-                                        "Cette application est la meilleure de tous les temps."};
+    private String[] sentencesMedium = {  "It is really hot and sunny outside.",
+                                        "I'm not tired this morning.",
+                                        "This exercise is really enjoyable.",
+                                        "Today is gonna be a good day."};
 
-    private String[] sentencesHard = {  "Aujourd'hui sera une très belle journée.",
-                                        "Le mot 'c'est-à-dire' est difficile à écrire.",
-                                        "Les symboles '@' '/' '<' sont désagréables.",
-                                        "Anticonstitutionnellement est le mot le plus long du dictionnaire."};
+    private String[] sentencesHard = {  "This app is, without a doubt, the best of all time.",
+                                        "Pneumonoultramicroscopicsilicovolcanoconiosis.",
+                                        "Symbols '@' '/' '<' are unpleasant to write.",
+                                        "Incomprehensibilities is a very long word."};
 
 
     private String randomSentence;
@@ -61,7 +61,7 @@ public class SentenceExercice extends Game {
         if(rep.equals(randomSentence))
             gameCompleted();
         else{
-            //TODO, Pas reussi
+            startNewGame();
         }
     }
 
