@@ -18,63 +18,64 @@ android:layout_height="match_parent">
             style="@style/WhiteText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/StartText"
             style="@style/WhiteText"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
 
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
+            android:layout_alignStart="@+id/StartingPoint"
+            android:layout_below="@+id/StartingPoint"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
             android:text="Start" />
 
         <TextView
             android:id="@+id/startText"
             style="@style/WhiteText"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
 
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
+            android:layout_above="@+id/FinishingPoint"
+            android:layout_alignStart="@+id/FinishingPoint"
+            android:layout_marginBottom="38dp"
+            android:gravity="center"
             android:text="Finish" />
 
         <View
             android:id="@+id/section0"
             android:layout_width="50dp"
             android:layout_height="125dp"
+            android:layout_alignStart="@+id/startText"
             android:layout_alignTop="@+id/section1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="23dp"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section1"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_alignEnd="@+id/section0"
-            android:layout_below="@+id/section6"
-            android:layout_marginTop="39dp"
+            android:layout_alignBottom="@+id/section2"
+            android:layout_alignStart="@+id/section2"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section2"
             android:layout_width="50dp"
             android:layout_height="125dp"
-            android:layout_alignBottom="@+id/section1"
-            android:layout_marginEnd="49dp"
-            android:layout_toStartOf="@+id/StartingPoint"
+            android:layout_alignStart="@+id/section6"
+            android:layout_alignTop="@+id/section6"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section3"
             android:layout_width="50dp"
-            android:layout_height="150dp"
+            android:layout_height="125dp"
             android:layout_alignBottom="@+id/section5"
-            android:layout_alignEnd="@+id/section1"
+            android:layout_alignStart="@+id/section5"
             android:background="@color/white" />
 
         <View
@@ -82,43 +83,42 @@ android:layout_height="match_parent">
             android:layout_width="50dp"
             android:layout_height="125dp"
             android:layout_alignBottom="@+id/section6"
-            android:layout_alignEnd="@+id/section5"
+            android:layout_alignEnd="@+id/section6"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section5"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_above="@+id/section6"
-            android:layout_alignEnd="@+id/section6"
-            android:layout_marginBottom="39dp"
+            android:layout_alignEnd="@+id/section4"
+            android:layout_alignTop="@+id/section4"
             android:background="@color/white" />
 
         <View
             android:id="@+id/section6"
             android:layout_width="275dp"
             android:layout_height="50dp"
-            android:layout_alignStart="@+id/section2"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:background="@color/white" />
 
         <View
             android:id="@+id/StartingPoint"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/FinishingPoint"
-            android:layout_marginBottom="50dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_alignEnd="@+id/section3"
+            android:layout_below="@+id/section2"
+            android:layout_marginTop="30dp"
             android:background="@drawable/circle"
             android:text="View" />
 
         <View
             android:id="@+id/FinishingPoint"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_alignStart="@+id/section3"
+            android:layout_alignTop="@+id/section3"
+            android:layout_marginLeft="-13dp"
+            android:layout_marginTop="-38dp"
             android:background="@drawable/circle"
             android:elevation="0dp"
             android:text="View" />

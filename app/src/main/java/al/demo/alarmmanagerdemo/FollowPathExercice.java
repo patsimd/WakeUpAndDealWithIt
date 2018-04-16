@@ -44,7 +44,7 @@ public class FollowPathExercice extends Game{
         int x = Math.round(ev.getX());
         int y = Math.round(ev.getY());
 
-        RelativeLayout b = (RelativeLayout)findViewById(R.id.Background);
+        RelativeLayout b = (View)findViewById(R.id.Background);
         if(b == null)
             return true;
 
@@ -80,7 +80,7 @@ public class FollowPathExercice extends Game{
                 }
                 if (x > child.getLeft() && x < child.getRight() && y > child.getTop() && y < child.getBottom()) {
                     if (child.getId() == R.id.FinishingPoint) {
-                        finish();
+                        gameCompleted();
                     }
                 }
 
