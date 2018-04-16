@@ -130,8 +130,9 @@ public class listAlarmFragment extends Fragment{
                             alarmHelper.unschedulePendingIntent((int) switchView.getTag());
                             MainActivity.dbHelper.updateAlarmEnable((int) switchView.getTag(),false);
                         }
-
+                        MainActivity.updateAlarmList();
                     }
+
 
                 });
 
@@ -144,7 +145,10 @@ public class listAlarmFragment extends Fragment{
                 TextView tvLabel = new TextView(getContext());
                 tvLabel.setText(c.getString(1)  + "\n" +  c.getString(5));
                 tvLabel.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
-                tvLabel.setTextColor(Color.BLACK);
+                if(c.getInt(4) == 1)
+                    tvLabel.setTextColor(Color.BLACK);
+                else
+                    tvLabel.setTextColor(Color.GRAY);
                 tvLabel.setTextSize(18);
                 tvLabel.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
                 layoutLine1.addView(tvLabel);
@@ -159,7 +163,11 @@ public class listAlarmFragment extends Fragment{
                 TextView tvTime = new TextView(getContext());
                 tvTime.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 2.0f));
                 tvTime.setText(String.format("%02d",c.getInt(2)) + ":" + String.format("%02d",c.getInt(3)));
-                tvTime.setTextColor(Color.BLACK);
+                if(c.getInt(4) == 1)
+                    tvTime.setTextColor(Color.BLACK);
+                else
+                    tvTime.setTextColor(Color.GRAY);
+
                 tvTime.setTextSize(18);
                 layoutLine1.addView(tvTime);
 

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter adapter;
+    static ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Home","Events"};
     int Numboftabs =2;
@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 //if(position == 0) {
-                    Fragment c = adapter.getItem(0);
-                    ((listAlarmFragment) (c)).showAlarm(dbHelper.getAlarm());
+                    MainActivity.updateAlarmList();
                // }
             }
 
@@ -66,5 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static void updateAlarmList(){
+
+        Fragment c = adapter.getItem(0);
+        ((listAlarmFragment) (c)).showAlarm(dbHelper.getAlarm());
+    }
 
 }
