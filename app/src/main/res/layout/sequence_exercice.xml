@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:text="Sequence Exercise"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instructions :"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You must remember the following sequence and redo it to stop the alarm. Write the sequence in this form '1324221'."
+        android:textSize="17sp"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:layout_weight="100"
+                android:layout_height="75dp"
+                android:text="1"
+                android:id="@+id/seq1"
+                android:textSize="30dip"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="50"
+                android:layout_height="75dp"
+                android:text="2"
+                android:id="@+id/seq2"
+                android:textSize="30dip"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <TextView
+                android:layout_weight="50"
+                android:layout_height="75dp"
+                android:text="4"
+                android:id="@+id/seq4"
+                android:textSize="30dip"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="100"
+                android:layout_height="75dp"
+                android:text="3"
+                android:id="@+id/seq3"
+                android:textSize="30dip"
+                android:textAlignment="center"
+                android:gravity="center"/>
+        </TableRow>
+    </TableLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The sequence :"
+        android:textSize="17sp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sequenceEdit"
+        android:inputType="number"
+        android:hint="Enter your result here"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:onClick="validate"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New"
+            android:onClick="another"/>
+    </LinearLayout>
+</LinearLayout>

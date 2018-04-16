@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Exercice d'écriture"
+        android:text="Writing Exercise"
         android:textSize="25sp"
         android:textStyle="bold"/>
     <TextView
@@ -17,12 +17,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vous devez réécrire la phrase ci-dessous sans faute afin d'arrêter votre alarme."
+        android:text="You must rewrite the following sentence to stop the alarm."
         android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voici la phrase :"
+        android:text="Your sentence :"
         android:textSize="17sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -35,19 +35,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/phraseEdit"
         android:inputType="textCapSentences"
-        android:hint="Entrer la phrase ici"/>
+        android:hint="Enter your answer here"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Envoyer la réponse"
+            android:text="Send"
             android:onClick="validate"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nouvelle phrase"
+            android:text="New"
             android:onClick="another"/>
     </LinearLayout>
 
