@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
@@ -17,6 +18,7 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class NotificationPublisher extends BroadcastReceiver {
     private String TAG = "NotificationPublisher";
+    SQLiteDatabase db;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -26,23 +28,22 @@ public class NotificationPublisher extends BroadcastReceiver {
         service_intent.putExtra("alarmMusic",intent.getStringExtra("musicUri"));
         context.startService(service_intent);
 
-
-        int randomActivity = (int)(Math.random() * 4);
-
-        Intent contentIntent;
-
-        switch (randomActivity){
-            case 0: contentIntent = new Intent(context, ShakingGame.class);
-                break;
-            case 1: contentIntent = new Intent(context, MathExercice.class);
-                break;
-            case 2: contentIntent = new Intent(context, SentenceExercice.class);
-                break;
-            case 3: contentIntent = new Intent(context, FollowPathExercice.class);
-                break;
-            default: contentIntent = new Intent(context, MainActivity.class);
-                break;
+        int alarmID = intent.getIntExtra("alarmID",-1);
+        if(alarmID != -1){
+            if(MainActivity.active){
+                MainActivity.dbHelper.updateAlarmEnable(alarmID,false);
+                MainActivity.updateAlarmList();
+            }
+            else{
+                db = context.openOrCreateDatabase("ALARM",Context.MODE_PRIVATE, null);
+                db.execSQL("UPDATE alarm SET enabled =0 WHERE id =" + String.valueOf(alarmID));
+            }
         }
+
+
+        int randomActivity = (int)(Math.random() * Game.GamesArray.length);
+
+        Intent contentIntent = new Intent(context, Game.GamesArray[randomActivity]);
 
         contentIntent.putExtra("Difficulty",intent.getStringExtra("difficultyString"));
 

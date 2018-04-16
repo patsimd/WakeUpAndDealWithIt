@@ -61,7 +61,7 @@ public class SentenceExercice extends Game {
         if(rep.equals(randomSentence))
             gameCompleted();
         else{
-            //TODO, Pas reussi
+            startNewGame();
         }
     }
 

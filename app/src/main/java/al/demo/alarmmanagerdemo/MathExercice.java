@@ -96,7 +96,7 @@ public class MathExercice extends Game{
                 gameCompleted();
             }
             else{
-                //TODO, Pas reussi
+                startNewGame();
             }
     }
 
