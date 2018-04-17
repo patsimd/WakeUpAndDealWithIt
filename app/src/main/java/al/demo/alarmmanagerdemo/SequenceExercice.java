@@ -120,9 +120,10 @@ public class SequenceExercice extends Game{
     }
 
     public void another(View view){
-        createActivity();
         sequence = "";
         nbIterate = 0;
+		answer.setEnabled(false);
+		createActivity();
     }
 
     private void ResetTextView(){
