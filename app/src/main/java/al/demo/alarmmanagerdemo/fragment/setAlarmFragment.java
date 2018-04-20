@@ -104,21 +104,21 @@ public class setAlarmFragment extends Fragment{
 
                 //TOAST
 
-                Calendar timeFromNom = Calendar.getInstance();
-                timeFromNom.set(Calendar.MINUTE,selectedTime.get(Calendar.MINUTE));
-                timeFromNom.set(Calendar.HOUR_OF_DAY,selectedTime.get(Calendar.HOUR_OF_DAY));
+                Calendar timeFromNow = Calendar.getInstance();
+                timeFromNow.set(Calendar.MINUTE,selectedTime.get(Calendar.MINUTE));
+                timeFromNow.set(Calendar.HOUR_OF_DAY,selectedTime.get(Calendar.HOUR_OF_DAY));
 
-                timeFromNom.add(Calendar.HOUR_OF_DAY,-Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-                timeFromNom.add(Calendar.MINUTE,-Calendar.getInstance().get(Calendar.MINUTE));
+                timeFromNow.add(Calendar.HOUR_OF_DAY,-Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+                timeFromNow.add(Calendar.MINUTE,-Calendar.getInstance().get(Calendar.MINUTE));
 
-                int intHours = timeFromNom.get(Calendar.HOUR_OF_DAY);
+                int intHours = timeFromNow.get(Calendar.HOUR_OF_DAY);
                 String hours;
 
                 if(intHours != 0)
                     hours = String.valueOf(intHours) + " hours and ";
                 else
                     hours = "";
-                String minutes = String.valueOf(timeFromNom.get(Calendar.MINUTE));
+                String minutes = String.valueOf(timeFromNow.get(Calendar.MINUTE));
                 //display in long period of time
                 Toast.makeText(getContext(), "Alarm set in " + hours + minutes + " minutes from now", Toast.LENGTH_LONG).show();
 
