@@ -1,6 +1,7 @@
 package al.demo.alarmmanagerdemo;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +17,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.app.Service;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 
 public class Game extends AppCompatActivity {
@@ -24,17 +27,22 @@ public class Game extends AppCompatActivity {
     public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class,SequenceExercice.class, rightcolorExercice.class};
 
     protected String difficulte;
-    private boolean intentionalDestroy = false;
+    //private boolean intentionalDestroy = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         difficulte = getIntent().getStringExtra("Difficulty");
+
+        Intent service_intent = new Intent(this, BadService.class);
+        service_intent.putExtra("diff",difficulte);
+        startService(service_intent);
     }
 
     public void gameCompleted() {
         setContentView(R.layout.game_completed);
         stopService(new Intent(this, AlarmPlayer.class));
+        stopService(new Intent(this, BadService.class));
         findViewById(R.id.buttonClose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +73,7 @@ public class Game extends AppCompatActivity {
     }
 
     private void changeGame(){
+        stopService(new Intent(this, BadService.class));
         int randomActivity = (int)(Math.random() * GamesArray.length);
 
         Intent contentIntent = new Intent(this, GamesArray[randomActivity]);
@@ -73,7 +82,7 @@ public class Game extends AppCompatActivity {
 
         startActivity(contentIntent);
 
-        intentionalDestroy = true;
+        //intentionalDestroy = true;
         close();
     }
 
@@ -82,13 +91,33 @@ public class Game extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Do nothing or catch the keys you want to block
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            return false;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        activityManager.moveTaskToFront(getTaskId(), 0);
+    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        if(!intentionalDestroy)
-            stopService(new Intent(this, AlarmPlayer.class));
+        /*if(!intentionalDestroy)
+            stopService(new Intent(this, AlarmPlayer.class));*/
     }
 
 
