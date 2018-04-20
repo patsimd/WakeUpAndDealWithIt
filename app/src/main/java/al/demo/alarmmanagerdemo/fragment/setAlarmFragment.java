@@ -79,6 +79,12 @@ public class setAlarmFragment extends Fragment{
 
                 //long temp = Calendar.getInstance().getTimeInMillis() + 10;
 
+                selectedTime.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                if (selectedTime.before(Calendar.getInstance())) {
+                    if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
+                        selectedTime.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
                 long id = MainActivity.dbHelper.addAlarm(alarmLabel,selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),true,spinnerDifficulty.getSelectedItem().toString(),true,alarmMusic.toString());
 
                 notificationIntent.putExtra("alarmID",(int)id);
@@ -92,7 +98,7 @@ public class setAlarmFragment extends Fragment{
                 //alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-                alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
+                alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds" + "   Day : " + selectedTime.get(Calendar.DAY_OF_MONTH));
 
                 alarmNameTextView.setText("");
 
@@ -131,15 +137,11 @@ public class setAlarmFragment extends Fragment{
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
-                selectedTime.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
                 selectedTime.set(Calendar.MINUTE, minute);
                 selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 selectedTime.set(Calendar.SECOND, 0);
-                if (selectedTime.before(Calendar.getInstance())) {
-                    if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
-                        selectedTime.add(Calendar.DAY_OF_MONTH, 1);
-                }
-                alarmStatusTextView.setText("Day : " + selectedTime.get(Calendar.DAY_OF_MONTH) + " Time: " + selectedTime.get(Calendar.HOUR_OF_DAY) + ":" + selectedTime.get(Calendar.MINUTE));
+
+                //alarmStatusTextView.setText("Time: " + selectedTime.get(Calendar.HOUR_OF_DAY) + ":" + selectedTime.get(Calendar.MINUTE));
             }
         });
 
