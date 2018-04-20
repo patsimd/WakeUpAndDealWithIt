@@ -39,6 +39,16 @@
                     android:gravity="center"
                     android:textSize="20dp"
                     android:text="Remaining: 5" />
+                <TextView
+                    android:id="@+id/TriesRemaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignStart="@+id/StartingPoint"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="  Tries left : 3" />
 
 
 

@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import android.app.Notification;
@@ -24,8 +25,7 @@ import android.view.WindowManager;
 
 public class Game extends AppCompatActivity {
     public static String[] Difficulties = {"Easy","Normal","Hard"};
-    public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class,SequenceExercice.class, rightcolorExercice.class};
-
+    public static Class<?>[] GamesArray = {ShakingGame.class,SentenceExercice.class,MathExercice.class,FollowPathExercice.class,SequenceExercice.class,rightcolorExercice.class};
     protected String difficulte;
     //private boolean intentionalDestroy = false;
 
@@ -53,8 +53,13 @@ public class Game extends AppCompatActivity {
     }
 
     public void startNewGame(){
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        if (audioManager != null) {
+            audioManager.setStreamVolume(AudioManager.STREAM_ALARM,audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM),0);
+        }
+
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Wrong Answer :(");
+        alertDialog.setTitle("You failed :(");
         alertDialog.setMessage("Another game will start!");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
