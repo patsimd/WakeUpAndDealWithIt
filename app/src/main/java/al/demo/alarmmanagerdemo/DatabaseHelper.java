@@ -85,4 +85,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             enabled = 0;
         db.execSQL("UPDATE alarm SET enabled =" + String.valueOf(enabled) + " WHERE id =" + String.valueOf(id));
     }
+
+    public void updateAlarmRepeat(int id, boolean repeat){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int isRepeat;
+        if(repeat)
+            isRepeat = 1;
+        else
+            isRepeat = 0;
+        db.execSQL("UPDATE alarm SET repeat =" + String.valueOf(isRepeat) + " WHERE id =" + String.valueOf(id));
+    }
 }

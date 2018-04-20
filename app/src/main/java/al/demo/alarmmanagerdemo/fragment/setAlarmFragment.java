@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,6 +42,7 @@ public class setAlarmFragment extends Fragment{
     private TextView alarmStatusTextView;
     private TextView alarmNameTextView;
     private Spinner spinnerDifficulty;
+    private CheckBox repeatCheckBox;
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;
@@ -63,6 +65,7 @@ public class setAlarmFragment extends Fragment{
         alarmStatusTextView = (TextView) view.findViewById(R.id.status_text_view);
         alarmNameTextView = (TextView)view.findViewById(R.id.alarmName);
         spinnerDifficulty = (Spinner)view.findViewById(R.id.alarmDifficultySpinner);
+        repeatCheckBox = (CheckBox)view.findViewById(R.id.alarmRepeatCheckBox);
 
         view.findViewById(R.id.schedule_notification_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,7 @@ public class setAlarmFragment extends Fragment{
                         selectedTime.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                long id = MainActivity.dbHelper.addAlarm(alarmLabel,selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),true,spinnerDifficulty.getSelectedItem().toString(),true,alarmMusic.toString());
+                long id = MainActivity.dbHelper.addAlarm(alarmLabel,selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),true,spinnerDifficulty.getSelectedItem().toString(),repeatCheckBox.isChecked(),alarmMusic.toString());
 
                 notificationIntent.putExtra("alarmID",(int)id);
 
