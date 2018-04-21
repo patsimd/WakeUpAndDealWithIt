@@ -86,15 +86,11 @@ public class SequenceExercice extends Game{
             new CountDownTimer((i+1)*1000 + 500, 1000) {
                 public void onTick(long millisUntilFinished) {
                 }
-
                 public void onFinish() {
                     ResetTextView();
                     nbIterate ++;
                     if(nbIterate == nbSeq)
                         number = -99;
-
-
-
                 }
             }.start();
 

@@ -34,6 +34,9 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".rightcolorExercice"
+        android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".IntrusExercice"
             android:screenOrientation="portrait">
         </activity>
 
