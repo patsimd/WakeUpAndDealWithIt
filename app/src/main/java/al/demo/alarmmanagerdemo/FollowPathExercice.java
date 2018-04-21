@@ -21,13 +21,17 @@ public class FollowPathExercice extends Game{
 
     private boolean followingPath = false;
     private boolean gameStarted = false;
+    private int chances = 3;
+    private boolean alreadyStartedNewGame = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(difficulte.equals(Game.Difficulties[0]))
+        if(difficulte.equals(Game.Difficulties[0])){
             setContentView(R.layout.followpath_supereasy);
+            chances = 2;
+        }
         else if(difficulte.equals(Game.Difficulties[1]))
             setContentView(R.layout.followpath_easy);
         else if (difficulte.equals(Game.Difficulties[2]))
@@ -62,6 +66,7 @@ public class FollowPathExercice extends Game{
                             followingPath = true;
                             gameStarted = true;
                             SetPrompt();
+                            chances--;
                         }
                     }
 
@@ -102,9 +107,24 @@ public class FollowPathExercice extends Game{
         View prompt = findViewById(R.id.InstructionWindow);
         if (prompt != null) {
             if (followingPath == false && gameStarted == true) {
-                prompt.setVisibility(View.VISIBLE);
-                ((TextView) findViewById(R.id.instruction)).setLines(1);
-                ((TextView) findViewById(R.id.instruction)).setText("Failed, try again");
+                if(chances > 0) {
+                    prompt.setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.instruction)).setLines(2);
+                    String tryStr;
+                    if (chances == 1)
+                        tryStr = "try";
+                    else
+                        tryStr = "tries";
+                    ((TextView) findViewById(R.id.instruction)).setText("Failed, try again. Only " + String.valueOf(chances) + " " + tryStr + " left");
+                }
+                else{
+                    if(!alreadyStartedNewGame){
+                        startNewGame();
+                        alreadyStartedNewGame = true;
+                    }
+
+                }
+
             } else {
                 prompt.setVisibility(View.GONE);
             }

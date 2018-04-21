@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,6 +42,7 @@ public class setAlarmFragment extends Fragment{
     private TextView alarmStatusTextView;
     private TextView alarmNameTextView;
     private Spinner spinnerDifficulty;
+    private CheckBox repeatCheckBox;
     private int s_hour;
     private int s_minute;
     private Calendar selectedTime;
@@ -63,6 +65,7 @@ public class setAlarmFragment extends Fragment{
         alarmStatusTextView = (TextView) view.findViewById(R.id.status_text_view);
         alarmNameTextView = (TextView)view.findViewById(R.id.alarmName);
         spinnerDifficulty = (Spinner)view.findViewById(R.id.alarmDifficultySpinner);
+        repeatCheckBox = (CheckBox)view.findViewById(R.id.alarmRepeatCheckBox);
 
         view.findViewById(R.id.schedule_notification_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +82,13 @@ public class setAlarmFragment extends Fragment{
 
                 //long temp = Calendar.getInstance().getTimeInMillis() + 10;
 
-                long id = MainActivity.dbHelper.addAlarm(alarmLabel,selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),true,spinnerDifficulty.getSelectedItem().toString(),true,alarmMusic.toString());
+                selectedTime.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                if (selectedTime.before(Calendar.getInstance())) {
+                    if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
+                        selectedTime.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                long id = MainActivity.dbHelper.addAlarm(alarmLabel,selectedTime.getTime().getHours(),selectedTime.getTime().getMinutes(),true,spinnerDifficulty.getSelectedItem().toString(),repeatCheckBox.isChecked(),alarmMusic.toString());
 
                 notificationIntent.putExtra("alarmID",(int)id);
 
@@ -92,27 +101,27 @@ public class setAlarmFragment extends Fragment{
                 //alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-                alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds");
+                alarmStatusTextView.setText("Called in " + timelapse / 1000 + " seconds" + "   Day : " + selectedTime.get(Calendar.DAY_OF_MONTH));
 
                 alarmNameTextView.setText("");
 
                 //TOAST
 
-                Calendar timeFromNom = Calendar.getInstance();
-                timeFromNom.set(Calendar.MINUTE,selectedTime.get(Calendar.MINUTE));
-                timeFromNom.set(Calendar.HOUR_OF_DAY,selectedTime.get(Calendar.HOUR_OF_DAY));
+                Calendar timeFromNow = Calendar.getInstance();
+                timeFromNow.set(Calendar.MINUTE,selectedTime.get(Calendar.MINUTE));
+                timeFromNow.set(Calendar.HOUR_OF_DAY,selectedTime.get(Calendar.HOUR_OF_DAY));
 
-                timeFromNom.add(Calendar.HOUR_OF_DAY,-Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-                timeFromNom.add(Calendar.MINUTE,-Calendar.getInstance().get(Calendar.MINUTE));
+                timeFromNow.add(Calendar.HOUR_OF_DAY,-Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+                timeFromNow.add(Calendar.MINUTE,-Calendar.getInstance().get(Calendar.MINUTE));
 
-                int intHours = timeFromNom.get(Calendar.HOUR_OF_DAY);
+                int intHours = timeFromNow.get(Calendar.HOUR_OF_DAY);
                 String hours;
 
                 if(intHours != 0)
                     hours = String.valueOf(intHours) + " hours and ";
                 else
                     hours = "";
-                String minutes = String.valueOf(timeFromNom.get(Calendar.MINUTE));
+                String minutes = String.valueOf(timeFromNow.get(Calendar.MINUTE));
                 //display in long period of time
                 Toast.makeText(getContext(), "Alarm set in " + hours + minutes + " minutes from now", Toast.LENGTH_LONG).show();
 
@@ -131,15 +140,11 @@ public class setAlarmFragment extends Fragment{
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
 
-                selectedTime.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
                 selectedTime.set(Calendar.MINUTE, minute);
                 selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 selectedTime.set(Calendar.SECOND, 0);
-                if (selectedTime.before(Calendar.getInstance())) {
-                    if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
-                        selectedTime.add(Calendar.DAY_OF_MONTH, 1);
-                }
-                alarmStatusTextView.setText("Day : " + selectedTime.get(Calendar.DAY_OF_MONTH) + " Time: " + selectedTime.get(Calendar.HOUR_OF_DAY) + ":" + selectedTime.get(Calendar.MINUTE));
+
+                //alarmStatusTextView.setText("Time: " + selectedTime.get(Calendar.HOUR_OF_DAY) + ":" + selectedTime.get(Calendar.MINUTE));
             }
         });
 

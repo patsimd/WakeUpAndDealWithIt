@@ -40,6 +40,10 @@ public class AlarmPlayer extends Service {
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
 
         try {
+            AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+            if (audioManager != null) {
+                audioManager.setStreamVolume(AudioManager.STREAM_ALARM,audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM),0);
+            }
             mediaPlayer.setDataSource(this, sound);
             mediaPlayer.setLooping(true);
             mediaPlayer.prepare();
@@ -49,7 +53,7 @@ public class AlarmPlayer extends Service {
         }
 
 
-        return START_NOT_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     @Override

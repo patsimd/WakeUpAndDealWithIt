@@ -20,7 +20,7 @@ public class rightcolorExercice extends Game {
     private boolean gameReady = false;
     private int toComplete = 5;
     private boolean rightcolor = false;
-
+    private int chances = 3;
 
     String colorsName[] = {"Black", "Red", "Green", "Blue", "Yellow", "Orange", "Purple"};
     int colors[];
@@ -69,6 +69,9 @@ public class rightcolorExercice extends Game {
                 if (gameReady && rightcolor) {
                     Scores();
                 }
+                else if (gameReady && !rightcolor) {
+                    Fail();
+                }
                 NewTestColorCombination();
             }
         });
@@ -76,8 +79,11 @@ public class rightcolorExercice extends Game {
         button = (Button) findViewById(R.id.NoButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (gameReady && rightcolor == false) {
+                if (gameReady && !rightcolor) {
                     Scores();
+                }
+                else if (gameReady && rightcolor) {
+                    Fail();
                 }
                 NewTestColorCombination();
             }
@@ -124,6 +130,16 @@ public class rightcolorExercice extends Game {
 
         textView.setText(colorsName[name]);
         textView.setTextColor(colors[color]);
+    }
+
+    protected void Fail(){
+        chances--;
+        TextView textView = (TextView) findViewById(R.id.TriesRemaining);
+        if (textView == null)
+            return;
+        textView.setText("  Tries left : " + String.valueOf(chances));
+        if(chances <= 0)
+            startNewGame();
     }
 
 

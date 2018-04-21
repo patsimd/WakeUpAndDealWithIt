@@ -190,6 +190,22 @@ public class listAlarmFragment extends Fragment{
                 leftContainer.addView(swEnable);
 
 
+                CheckBox cbRepeat = new CheckBox(getContext());
+                cbRepeat.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+                cbRepeat.setText("Repeat");
+                if(c.getInt(6) == 1)
+                    cbRepeat.setChecked(true);
+                else
+                    cbRepeat.setChecked(false);
+                cbRepeat.setTag(c.getInt(0));
+                cbRepeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton checkBoxView, boolean isChecked) {
+                        MainActivity.dbHelper.updateAlarmRepeat((int) checkBoxView.getTag(),isChecked);
+                    }
+                });
+                leftContainer.addView(cbRepeat);
+
 
                 TextView tvLabel = new TextView(getContext());
                 tvLabel.setText(c.getString(1));

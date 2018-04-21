@@ -47,13 +47,34 @@
             android:textStyle="bold"
             android:textSize="17sp"
             android:textColor="@android:color/black"
-            android:text="Difficulty :" />
+            android:text="Game difficulty :" />
 
         <Spinner
             android:id="@+id/alarmDifficultySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/difficulties_array" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/alarmLabeLRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@android:color/black"
+            android:text="Repeat every day :  " />
+
+        <CheckBox
+            android:id="@+id/alarmRepeatCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 
