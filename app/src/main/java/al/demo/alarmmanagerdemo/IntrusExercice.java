@@ -55,16 +55,16 @@ public class IntrusExercice extends Game {
 
         switch (randomImg){
             case 0:
-                goodImg = R.drawable.pika;
-                img = R.drawable.mario;
+                goodImg = R.drawable.pikagood;
+                img = R.drawable.pika;
                 break;
             case 1:
-                goodImg = R.drawable.mario;
-                img = R.drawable.angrybird;
+                goodImg = R.drawable.mariogood;
+                img = R.drawable.mario;
                 break;
             case 2:
-                goodImg = R.drawable.angrybird;
-                img = R.drawable.pika;
+                goodImg = R.drawable.angrybirdgood;
+                img = R.drawable.angrybird;
                 break;
         }
 

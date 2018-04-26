@@ -45,57 +45,62 @@ public class SequenceExercice extends Game{
             nbSeq = 8;
         }
 
-        for(int i =0; i < nbSeq +1; i++)
-        {
-            new CountDownTimer((i+1)*1000, 1000) {
-                public void onTick(long millisUntilFinished) {
+        new CountDownTimer(1500, 1000) {
+            public void onTick(long millisUntilFinished){
+
+            }
+            public void onFinish(){
+                for(int i =0; i < nbSeq +1; i++) {
+                    new CountDownTimer((i + 1) * 1000, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        public void onFinish() {
+                            if (number != -99) {
+                                number = randomizeNumber();
+                                ResetTextView();
+                                sequence += number;
+                            }
+
+                            switch (number) {
+                                case 1:
+                                    seq1.setTextSize(50);
+                                    seq1.setTextColor(Color.RED);
+                                    break;
+                                case 2:
+                                    seq2.setTextSize(50);
+                                    seq2.setTextColor(Color.RED);
+                                    break;
+                                case 3:
+                                    seq3.setTextSize(50);
+                                    seq3.setTextColor(Color.RED);
+                                    break;
+                                case 4:
+                                    seq4.setTextSize(50);
+                                    seq4.setTextColor(Color.RED);
+                                    break;
+                                case -99:
+                                    answer.setEnabled(true);
+                                default:
+                                    break;
+                            }
+                        }
+                    }.start();
+
+                    new CountDownTimer((i + 1) * 1000 + 500, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        public void onFinish() {
+                            ResetTextView();
+                            nbIterate++;
+                            if (nbIterate == nbSeq)
+                                number = -99;
+                        }
+                    }.start();
                 }
-
-                public void onFinish() {
-                    if(number != -99){
-                        number = randomizeNumber();
-                        ResetTextView();
-                        sequence += number;
-                    }
-
-                    switch (number) {
-                        case 1:
-                            seq1.setTextSize(50);
-                            seq1.setTextColor(Color.RED);
-                            break;
-                        case 2:
-                            seq2.setTextSize(50);
-                            seq2.setTextColor(Color.RED);
-                            break;
-                        case 3:
-                            seq3.setTextSize(50);
-                            seq3.setTextColor(Color.RED);
-                            break;
-                        case 4:
-                            seq4.setTextSize(50);
-                            seq4.setTextColor(Color.RED);
-                            break;
-                        case -99:
-                            answer.setEnabled(true);
-                        default:
-                            break;
-                    }
-                }
-            }.start();
-
-            new CountDownTimer((i+1)*1000 + 500, 1000) {
-                public void onTick(long millisUntilFinished) {
-                }
-                public void onFinish() {
-                    ResetTextView();
-                    nbIterate ++;
-                    if(nbIterate == nbSeq)
-                        number = -99;
-                }
-            }.start();
-
-        }
-
+            }
+        }.start();
     }
 
     private int randomizeNumber(){
@@ -107,7 +112,7 @@ public class SequenceExercice extends Game{
 
     public void validate(View view){
         String rep = answer.getText().toString();
-        if(rep.equals(sequence)) {
+        if(rep.equals(sequence) && !rep.equals("")) {
             gameCompleted();
         }
         else{
@@ -115,12 +120,12 @@ public class SequenceExercice extends Game{
         }
     }
 
-    public void another(View view){
+    /*public void another(View view){
         sequence = "";
         nbIterate = 0;
 		answer.setEnabled(false);
 		createActivity();
-    }
+    }*/
 
     private void ResetTextView(){
         seq1.setTextSize(30);
