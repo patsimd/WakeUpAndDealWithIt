@@ -3,6 +3,7 @@
           package="al.demo.alarmmanagerdemo">
 
     <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -42,17 +43,21 @@
             android:screenOrientation="portrait">
         </activity>
 
-
-        <receiver android:name=".PowerConnectedBroadcastReceiver" >
+        <receiver
+            android:name=".PowerConnectedBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <receiver android:name=".NotificationPublisher" >
             <intent-filter>
                 <action android:name="al.demo.alarmmanagerdemo.NOTIFY_ACTION"/>
             </intent-filter>
         </receiver>
+
         <service android:name=".AlarmPlayer"
             android:enabled="true"
             android:stopWithTask="false" />

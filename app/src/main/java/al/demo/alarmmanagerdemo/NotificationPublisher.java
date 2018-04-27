@@ -68,7 +68,8 @@ public class NotificationPublisher extends BroadcastReceiver {
                         AlarmHelper alarmHelper = new AlarmHelper(context);
                         alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
 
-                    } else {
+                    }
+                    else {
                         //Not Repeat
                         if(MainActivity.active){
                             MainActivity.dbHelper.updateAlarmEnable(alarmID,false);
