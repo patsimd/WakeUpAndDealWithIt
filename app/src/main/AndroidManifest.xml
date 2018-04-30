@@ -42,7 +42,9 @@
         <activity android:name=".IntrusExercice"
             android:screenOrientation="portrait">
         </activity>
-
+        <activity android:name=".ShootTargetExercice"
+            android:screenOrientation="portrait">
+        </activity>
         <receiver
             android:name=".PowerConnectedBroadcastReceiver"
             android:enabled="true"
