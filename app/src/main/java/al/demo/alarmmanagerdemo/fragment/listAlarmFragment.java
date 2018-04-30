@@ -81,8 +81,13 @@ public class listAlarmFragment extends Fragment{
 
                 TextView tvTime = new TextView(getContext());
 
+                LinearLayout timeContainer = new LinearLayout(getContext());
+                timeContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
+                timeContainer.setOrientation(LinearLayout.VERTICAL);
 
-                tvTime.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.50f));
+                layoutLine1.addView((timeContainer));
+
+                tvTime.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.75f));
                 tvTime.setText(String.format("%02d",c.getInt(2)) + ":" + String.format("%02d",c.getInt(3)));
                 tvTime.setSingleLine();
                 tvTime.setPadding(30,0,0,0);
@@ -92,7 +97,7 @@ public class listAlarmFragment extends Fragment{
                     tvTime.setTextColor(Color.GRAY);
 
                 tvTime.setTextSize(28);
-                layoutLine1.addView(tvTime);
+                timeContainer.addView(tvTime);
 
                 LinearLayout container2 = new LinearLayout(getContext());
                 container2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.4f));
@@ -191,7 +196,7 @@ public class listAlarmFragment extends Fragment{
 
 
                 CheckBox cbRepeat = new CheckBox(getContext());
-                cbRepeat.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+                cbRepeat.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.25f));
                 cbRepeat.setText("Repeat");
                 if(c.getInt(6) == 1)
                     cbRepeat.setChecked(true);
@@ -204,7 +209,16 @@ public class listAlarmFragment extends Fragment{
                         MainActivity.dbHelper.updateAlarmRepeat((int) checkBoxView.getTag(),isChecked);
                     }
                 });
-                leftContainer.addView(cbRepeat);
+                if(c.getInt(4) == 1) {
+                    cbRepeat.setTextColor(Color.BLACK);
+                    cbRepeat.setEnabled(true);
+                }
+                else {
+                    cbRepeat.setTextColor(Color.GRAY);
+                    cbRepeat.setEnabled(false);
+                }
+                ///cbRepeat.setTextSize(10);
+                timeContainer.addView(cbRepeat);
 
 
                 TextView tvLabel = new TextView(getContext());
