@@ -77,7 +77,7 @@ public class Game extends AppCompatActivity {
         });
     }
 
-    private void changeGame(){
+    protected void changeGame(){
         stopService(new Intent(this, BadService.class));
         int randomActivity = (int)(Math.random() * GamesArray.length);
 

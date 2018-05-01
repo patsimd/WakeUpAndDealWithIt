@@ -1,6 +1,9 @@
 package al.demo.alarmmanagerdemo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,7 +36,7 @@ public class ShootTargetExercice extends Game{
     private float targetLifeTime = 3;
     private int targetSize = 150;
     private int targetSpawned =0;
-
+    private boolean succes = true;
     Bitmap targetBmp;
 
     private myThread thread;
@@ -47,17 +51,20 @@ public class ShootTargetExercice extends Game{
         super.onCreate(savedInstanceState);
 
         shootSurfaceView = new ShootingTargetSurfaceView(this);
-        thread = new myThread(shootSurfaceView.getHolder(), shootSurfaceView);
-        targetBmp = BitmapFactory.decodeResource(getResources(), R.drawable.target);
-
-        start();
-
+        targetBmp = BitmapFactory.decodeResource(getResources(), R.drawable.target);start();
     }
 
 
+
+    @Override
+    public void gameCompleted() {
+        stopService(new Intent(this, AlarmPlayer.class));
+        stopService(new Intent(this, BadService.class));
+        finish();
+    }
+
     public void start(){
         alreadyStartedNewGame = true;
-        thread.setRunning(true);
         setContentView(shootSurfaceView);
 
 
@@ -97,7 +104,7 @@ public class ShootTargetExercice extends Game{
 
         if(targetRemaining <= 0 ){
             if(shootingTarget.isEmpty())
-                gameCompleted();
+                thread.setRunning(false);
         }
         else if(Math.floor(( gameClock / ShootingTargetspawnDelay) ) > targetSpawned){
 
@@ -199,9 +206,9 @@ public class ShootTargetExercice extends Game{
             if(completionRate >= 1 ){
                 lives--;
                 dead = true;
-                if(!alreadyStartedNewGame && lives == 0){
-                    startNewGame();
-                    alreadyStartedNewGame = true;
+                if(lives == 0){
+                    succes = false;
+                    thread.setRunning(false);
                 }
                 shootingTarget.remove(this);
             }
@@ -270,11 +277,11 @@ public class ShootTargetExercice extends Game{
         public void run() {
             Canvas c;
 
-
             while (running) {
-                if(!started){
+
+                if (!started) {
                     gameClock = 0;
-                    finishTime =  System.currentTimeMillis();
+                    finishTime = System.currentTimeMillis();
                     started = true;
                 }
 
@@ -293,15 +300,14 @@ public class ShootTargetExercice extends Game{
                         _surfaceHolder.unlockCanvasAndPost(c);
                     }
                 }
-                if (!running) return;
 
                 long previousFinishTime = finishTime;
-                finishTime =  System.currentTimeMillis();
+                finishTime = System.currentTimeMillis();
                 deltaTime = (double) (finishTime - previousFinishTime) / 1000;
                 gameClock += deltaTime;
 
                 long sleepTime = targetTime - (finishTime - startTime);
-                if(sleepTime > 0) {
+                if (sleepTime > 0) {
                     try {
                         Thread.sleep(sleepTime);
                     } catch (InterruptedException e) {
@@ -309,6 +315,14 @@ public class ShootTargetExercice extends Game{
                     }
                 }
             }
+            if(!succes)
+            {
+                finish();
+                changeGame();
+            }
+            else
+                gameCompleted();
+
         }
     }
 
