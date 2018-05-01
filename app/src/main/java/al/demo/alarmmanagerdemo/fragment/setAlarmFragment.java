@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,7 @@ public class setAlarmFragment extends Fragment{
                 notificationIntent.putExtra("difficultyString", spinnerDifficulty.getSelectedItem().toString());
 
                 //long temp = Calendar.getInstance().getTimeInMillis() + 10;
-
+                selectedTime.set(Calendar.MONTH,Calendar.getInstance().get(Calendar.MONTH));
                 selectedTime.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
                 if (selectedTime.before(Calendar.getInstance())) {
                     if(!(selectedTime.get(Calendar.HOUR_OF_DAY) == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && selectedTime.get(Calendar.MINUTE) == Calendar.getInstance().get(Calendar.MINUTE)))
@@ -98,6 +99,8 @@ public class setAlarmFragment extends Fragment{
 
 
                 alarmHelper.schedulePendingIntent(selectedTime.getTimeInMillis(), pendingIntent);
+
+                Log.i("CHECKCA",String.valueOf(selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()));
                 //alarmHelper.schedulePendingIntent(Calendar.getInstance().getTimeInMillis() + 5000, pendingIntent);
 
                 long timelapse = selectedTime.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
